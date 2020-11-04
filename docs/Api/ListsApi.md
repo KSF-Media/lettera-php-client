@@ -1,6 +1,6 @@
 # OpenAPI\Client\ListsApi
 
-All URIs are relative to *http://http:/v2*
+All URIs are relative to *http://http:/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## frontpageGet
 
-> \OpenAPI\Client\Model\ListArticle[] frontpageGet($start, $limit, $category, $paper)
+> \OpenAPI\Client\Model\ArticleStub[] frontpageGet($start, $limit, $category, $paper)
 
 Returns a list for a front page
 
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListArticle[]**](../Model/ListArticle.md)
+[**\OpenAPI\Client\Model\ArticleStub[]**](../Model/ArticleStub.md)
 
 ### Authorization
 
@@ -73,7 +73,7 @@ No authorization required
 
 ## latestGet
 
-> \OpenAPI\Client\Model\ListArticle[] latestGet($start, $limit, $paper)
+> \OpenAPI\Client\Model\ArticleStub[] latestGet($start, $limit, $paper)
 
 Returns a list of latest articles
 
@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListArticle[]**](../Model/ListArticle.md)
+[**\OpenAPI\Client\Model\ArticleStub[]**](../Model/ArticleStub.md)
 
 ### Authorization
 
@@ -131,7 +131,7 @@ No authorization required
 
 ## mostreadGet
 
-> \OpenAPI\Client\Model\ListArticle[] mostreadGet($start, $limit, $category, $paper, $only_subscribers)
+> \OpenAPI\Client\Model\ArticleStub[] mostreadGet($start, $limit, $category, $paper, $only_subscribers)
 
 Returns a list of most read articles
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListArticle[]**](../Model/ListArticle.md)
+[**\OpenAPI\Client\Model\ArticleStub[]**](../Model/ArticleStub.md)
 
 ### Authorization
 
@@ -193,7 +193,7 @@ No authorization required
 
 ## searchGet
 
-> \OpenAPI\Client\Model\ListArticle[] searchGet($start, $limit, $paper, $content_query)
+> \OpenAPI\Client\Model\ArticleStub[] searchGet($start, $limit, $paper, $content_query)
 
 Returns a list of search results
 
@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListArticle[]**](../Model/ListArticle.md)
+[**\OpenAPI\Client\Model\ArticleStub[]**](../Model/ArticleStub.md)
 
 ### Authorization
 

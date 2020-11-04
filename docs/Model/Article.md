@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **article_type** | [**\OpenAPI\Client\Model\ArticleType**](ArticleType.md) |  | 
 **article_type_details** | [**\OpenAPI\Client\Model\ArticleTypeDetails**](ArticleTypeDetails.md) |  | [optional] 
 **external_scripts** | **string[]** |  | [optional] 
-**related_articles** | [**\OpenAPI\Client\Model\RelatedArticle[]**](RelatedArticle.md) |  | 
+**related_articles** | [**\OpenAPI\Client\Model\ArticleStub[]**](ArticleStub.md) |  | 
 **share_url** | **string** |  | [optional] 
 **paper** | [**\OpenAPI\Client\Model\Paper**](Paper.md) |  | 
 **analytics_category** | **string** |  | [optional] 

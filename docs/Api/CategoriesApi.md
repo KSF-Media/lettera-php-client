@@ -1,6 +1,6 @@
 # OpenAPI\Client\CategoriesApi
 
-All URIs are relative to *http://http:/v2*
+All URIs are relative to *http://http:/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

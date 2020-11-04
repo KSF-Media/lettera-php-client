@@ -1,6 +1,6 @@
 {
     "name": "KSF-Media/lettera-php-client",
-    "description": "KSF Media's articles service",
+    "description": "<h2>KSF Media's articles service</h2> Changelog for V3: <ul><li>Unified <code>ListArticle</code> and <code>RelatedArticle</code> into a single type <code>ArticleStub</code>. NOTE: In contrast to the old types, <code>ArticleStub.relatedArticles</code> is now an optional value.</li> <li>Added endpoint <code>/article/{uuid}/stub</code></li> <li>Removed deprecated endpoint <code>/article/search</code></li> </ul>",
     "keywords": [
         "openapitools",
         "openapi-generator",
