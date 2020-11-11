@@ -73,7 +73,7 @@ No authorization required
 
 ## articleUuidStubGet
 
-> \OpenAPI\Client\Model\ArticleStub articleUuidStubGet($uuid, $auth_user, $authorization)
+> \OpenAPI\Client\Model\ArticleStub articleUuidStubGet($uuid)
 
 
 
@@ -92,11 +92,9 @@ $apiInstance = new OpenAPI\Client\Api\ArticlesApi(
     new GuzzleHttp\Client()
 );
 $uuid = 'uuid_example'; // string | 
-$auth_user = 'auth_user_example'; // string | 
-$authorization = 'authorization_example'; // string | 
 
 try {
-    $result = $apiInstance->articleUuidStubGet($uuid, $auth_user, $authorization);
+    $result = $apiInstance->articleUuidStubGet($uuid);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ArticlesApi->articleUuidStubGet: ', $e->getMessage(), PHP_EOL;
@@ -110,8 +108,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)|  |
- **auth_user** | [**string**](../Model/.md)|  | [optional]
- **authorization** | **string**|  | [optional]
 
 ### Return type
 

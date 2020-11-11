@@ -414,16 +414,14 @@ class ArticlesApi
      * Operation articleUuidStubGet
      *
      * @param  string $uuid uuid (required)
-     * @param  string $auth_user auth_user (optional)
-     * @param  string $authorization authorization (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ArticleStub
      */
-    public function articleUuidStubGet($uuid, $auth_user = null, $authorization = null)
+    public function articleUuidStubGet($uuid)
     {
-        list($response) = $this->articleUuidStubGetWithHttpInfo($uuid, $auth_user, $authorization);
+        list($response) = $this->articleUuidStubGetWithHttpInfo($uuid);
         return $response;
     }
 
@@ -431,16 +429,14 @@ class ArticlesApi
      * Operation articleUuidStubGetWithHttpInfo
      *
      * @param  string $uuid (required)
-     * @param  string $auth_user (optional)
-     * @param  string $authorization (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ArticleStub, HTTP status code, HTTP response headers (array of strings)
      */
-    public function articleUuidStubGetWithHttpInfo($uuid, $auth_user = null, $authorization = null)
+    public function articleUuidStubGetWithHttpInfo($uuid)
     {
-        $request = $this->articleUuidStubGetRequest($uuid, $auth_user, $authorization);
+        $request = $this->articleUuidStubGetRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -521,15 +517,13 @@ class ArticlesApi
      * 
      *
      * @param  string $uuid (required)
-     * @param  string $auth_user (optional)
-     * @param  string $authorization (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function articleUuidStubGetAsync($uuid, $auth_user = null, $authorization = null)
+    public function articleUuidStubGetAsync($uuid)
     {
-        return $this->articleUuidStubGetAsyncWithHttpInfo($uuid, $auth_user, $authorization)
+        return $this->articleUuidStubGetAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -543,16 +537,14 @@ class ArticlesApi
      * 
      *
      * @param  string $uuid (required)
-     * @param  string $auth_user (optional)
-     * @param  string $authorization (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function articleUuidStubGetAsyncWithHttpInfo($uuid, $auth_user = null, $authorization = null)
+    public function articleUuidStubGetAsyncWithHttpInfo($uuid)
     {
         $returnType = '\OpenAPI\Client\Model\ArticleStub';
-        $request = $this->articleUuidStubGetRequest($uuid, $auth_user, $authorization);
+        $request = $this->articleUuidStubGetRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -592,13 +584,11 @@ class ArticlesApi
      * Create request for operation 'articleUuidStubGet'
      *
      * @param  string $uuid (required)
-     * @param  string $auth_user (optional)
-     * @param  string $authorization (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function articleUuidStubGetRequest($uuid, $auth_user = null, $authorization = null)
+    protected function articleUuidStubGetRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -614,14 +604,6 @@ class ArticlesApi
         $httpBody = '';
         $multipart = false;
 
-        // header params
-        if ($auth_user !== null) {
-            $headerParams['AuthUser'] = ObjectSerializer::toHeaderValue($auth_user);
-        }
-        // header params
-        if ($authorization !== null) {
-            $headerParams['Authorization'] = ObjectSerializer::toHeaderValue($authorization);
-        }
 
         // path params
         if ($uuid !== null) {
