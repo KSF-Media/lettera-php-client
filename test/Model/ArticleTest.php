@@ -93,6 +93,13 @@ class ArticleTest extends TestCase
     }
 
     /**
+     * Test attribute "list_title"
+     */
+    public function testPropertyListTitle()
+    {
+    }
+
+    /**
      * Test attribute "authors"
      */
     public function testPropertyAuthors()

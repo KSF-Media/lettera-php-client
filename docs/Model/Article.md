@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **uuid** | **string** |  | 
 **title** | **string** |  | 
+**list_title** | **string** |  | [optional] 
 **authors** | [**\OpenAPI\Client\Model\Author[]**](Author.md) |  | 
 **tags** | **string[]** |  | 
 **preamble** | **string** |  | [optional] 

@@ -59,6 +59,7 @@ class Article implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'uuid' => 'string',
         'title' => 'string',
+        'list_title' => 'string',
         'authors' => '\OpenAPI\Client\Model\Author[]',
         'tags' => 'string[]',
         'preamble' => 'string',
@@ -87,6 +88,7 @@ class Article implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
         'title' => null,
+        'list_title' => null,
         'authors' => null,
         'tags' => null,
         'preamble' => null,
@@ -136,6 +138,7 @@ class Article implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'uuid' => 'uuid',
         'title' => 'title',
+        'list_title' => 'listTitle',
         'authors' => 'authors',
         'tags' => 'tags',
         'preamble' => 'preamble',
@@ -164,6 +167,7 @@ class Article implements ModelInterface, ArrayAccess
     protected static $setters = [
         'uuid' => 'setUuid',
         'title' => 'setTitle',
+        'list_title' => 'setListTitle',
         'authors' => 'setAuthors',
         'tags' => 'setTags',
         'preamble' => 'setPreamble',
@@ -192,6 +196,7 @@ class Article implements ModelInterface, ArrayAccess
     protected static $getters = [
         'uuid' => 'getUuid',
         'title' => 'getTitle',
+        'list_title' => 'getListTitle',
         'authors' => 'getAuthors',
         'tags' => 'getTags',
         'preamble' => 'getPreamble',
@@ -274,6 +279,7 @@ class Article implements ModelInterface, ArrayAccess
     {
         $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
         $this->container['title'] = isset($data['title']) ? $data['title'] : null;
+        $this->container['list_title'] = isset($data['list_title']) ? $data['list_title'] : null;
         $this->container['authors'] = isset($data['authors']) ? $data['authors'] : null;
         $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
         $this->container['preamble'] = isset($data['preamble']) ? $data['preamble'] : null;
@@ -400,6 +406,30 @@ class Article implements ModelInterface, ArrayAccess
     public function setTitle($title)
     {
         $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets list_title
+     *
+     * @return string|null
+     */
+    public function getListTitle()
+    {
+        return $this->container['list_title'];
+    }
+
+    /**
+     * Sets list_title
+     *
+     * @param string|null $list_title list_title
+     *
+     * @return $this
+     */
+    public function setListTitle($list_title)
+    {
+        $this->container['list_title'] = $list_title;
 
         return $this;
     }
