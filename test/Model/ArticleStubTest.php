@@ -175,4 +175,11 @@ class ArticleStubTest extends TestCase
     public function testPropertyShareUrl()
     {
     }
+
+    /**
+     * Test attribute "live_reporting"
+     */
+    public function testPropertyLiveReporting()
+    {
+    }
 }

@@ -70,7 +70,8 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'article_type' => '\OpenAPI\Client\Model\ArticleType',
         'article_type_details' => '\OpenAPI\Client\Model\ArticleTypeDetails',
         'paper' => '\OpenAPI\Client\Model\Paper',
-        'share_url' => 'string'
+        'share_url' => 'string',
+        'live_reporting' => 'bool'
     ];
 
     /**
@@ -92,7 +93,8 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'article_type' => null,
         'article_type_details' => null,
         'paper' => null,
-        'share_url' => null
+        'share_url' => null,
+        'live_reporting' => null
     ];
 
     /**
@@ -135,7 +137,8 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'article_type' => 'articleType',
         'article_type_details' => 'articleTypeDetails',
         'paper' => 'paper',
-        'share_url' => 'shareUrl'
+        'share_url' => 'shareUrl',
+        'live_reporting' => 'liveReporting'
     ];
 
     /**
@@ -157,7 +160,8 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'article_type' => 'setArticleType',
         'article_type_details' => 'setArticleTypeDetails',
         'paper' => 'setPaper',
-        'share_url' => 'setShareUrl'
+        'share_url' => 'setShareUrl',
+        'live_reporting' => 'setLiveReporting'
     ];
 
     /**
@@ -179,7 +183,8 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'article_type' => 'getArticleType',
         'article_type_details' => 'getArticleTypeDetails',
         'paper' => 'getPaper',
-        'share_url' => 'getShareUrl'
+        'share_url' => 'getShareUrl',
+        'live_reporting' => 'getLiveReporting'
     ];
 
     /**
@@ -256,6 +261,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
         $this->container['article_type_details'] = isset($data['article_type_details']) ? $data['article_type_details'] : null;
         $this->container['paper'] = isset($data['paper']) ? $data['paper'] : null;
         $this->container['share_url'] = isset($data['share_url']) ? $data['share_url'] : null;
+        $this->container['live_reporting'] = isset($data['live_reporting']) ? $data['live_reporting'] : null;
     }
 
     /**
@@ -290,6 +296,9 @@ class ArticleStub implements ModelInterface, ArrayAccess
         }
         if ($this->container['paper'] === null) {
             $invalidProperties[] = "'paper' can't be null";
+        }
+        if ($this->container['live_reporting'] === null) {
+            $invalidProperties[] = "'live_reporting' can't be null";
         }
         return $invalidProperties;
     }
@@ -638,6 +647,30 @@ class ArticleStub implements ModelInterface, ArrayAccess
     public function setShareUrl($share_url)
     {
         $this->container['share_url'] = $share_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets live_reporting
+     *
+     * @return bool
+     */
+    public function getLiveReporting()
+    {
+        return $this->container['live_reporting'];
+    }
+
+    /**
+     * Sets live_reporting
+     *
+     * @param bool $live_reporting live_reporting
+     *
+     * @return $this
+     */
+    public function setLiveReporting($live_reporting)
+    {
+        $this->container['live_reporting'] = $live_reporting;
 
         return $this;
     }

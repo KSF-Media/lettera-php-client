@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **article_type_details** | [**\OpenAPI\Client\Model\ArticleTypeDetails**](ArticleTypeDetails.md) |  | [optional] 
 **paper** | [**\OpenAPI\Client\Model\Paper**](Paper.md) |  | 
 **share_url** | **string** |  | [optional] 
+**live_reporting** | **bool** |  | 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
