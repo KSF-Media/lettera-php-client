@@ -71,7 +71,8 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'article_type_details' => '\OpenAPI\Client\Model\ArticleTypeDetails',
         'paper' => '\OpenAPI\Client\Model\Paper',
         'share_url' => 'string',
-        'live_reporting' => 'bool'
+        'live_reporting' => 'bool',
+        'article_priority' => 'int'
     ];
 
     /**
@@ -94,7 +95,8 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'article_type_details' => null,
         'paper' => null,
         'share_url' => null,
-        'live_reporting' => null
+        'live_reporting' => null,
+        'article_priority' => null
     ];
 
     /**
@@ -138,7 +140,8 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'article_type_details' => 'articleTypeDetails',
         'paper' => 'paper',
         'share_url' => 'shareUrl',
-        'live_reporting' => 'liveReporting'
+        'live_reporting' => 'liveReporting',
+        'article_priority' => 'articlePriority'
     ];
 
     /**
@@ -161,7 +164,8 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'article_type_details' => 'setArticleTypeDetails',
         'paper' => 'setPaper',
         'share_url' => 'setShareUrl',
-        'live_reporting' => 'setLiveReporting'
+        'live_reporting' => 'setLiveReporting',
+        'article_priority' => 'setArticlePriority'
     ];
 
     /**
@@ -184,7 +188,8 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'article_type_details' => 'getArticleTypeDetails',
         'paper' => 'getPaper',
         'share_url' => 'getShareUrl',
-        'live_reporting' => 'getLiveReporting'
+        'live_reporting' => 'getLiveReporting',
+        'article_priority' => 'getArticlePriority'
     ];
 
     /**
@@ -262,6 +267,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
         $this->container['paper'] = isset($data['paper']) ? $data['paper'] : null;
         $this->container['share_url'] = isset($data['share_url']) ? $data['share_url'] : null;
         $this->container['live_reporting'] = isset($data['live_reporting']) ? $data['live_reporting'] : null;
+        $this->container['article_priority'] = isset($data['article_priority']) ? $data['article_priority'] : null;
     }
 
     /**
@@ -300,6 +306,14 @@ class ArticleStub implements ModelInterface, ArrayAccess
         if ($this->container['live_reporting'] === null) {
             $invalidProperties[] = "'live_reporting' can't be null";
         }
+        if (!is_null($this->container['article_priority']) && ($this->container['article_priority'] > 9223372036854775807)) {
+            $invalidProperties[] = "invalid value for 'article_priority', must be smaller than or equal to 9223372036854775807.";
+        }
+
+        if (!is_null($this->container['article_priority']) && ($this->container['article_priority'] < -9223372036854775808)) {
+            $invalidProperties[] = "invalid value for 'article_priority', must be bigger than or equal to -9223372036854775808.";
+        }
+
         return $invalidProperties;
     }
 
@@ -671,6 +685,38 @@ class ArticleStub implements ModelInterface, ArrayAccess
     public function setLiveReporting($live_reporting)
     {
         $this->container['live_reporting'] = $live_reporting;
+
+        return $this;
+    }
+
+    /**
+     * Gets article_priority
+     *
+     * @return int|null
+     */
+    public function getArticlePriority()
+    {
+        return $this->container['article_priority'];
+    }
+
+    /**
+     * Sets article_priority
+     *
+     * @param int|null $article_priority article_priority
+     *
+     * @return $this
+     */
+    public function setArticlePriority($article_priority)
+    {
+
+        if (!is_null($article_priority) && ($article_priority > 9223372036854775807)) {
+            throw new \InvalidArgumentException('invalid value for $article_priority when calling ArticleStub., must be smaller than or equal to 9223372036854775807.');
+        }
+        if (!is_null($article_priority) && ($article_priority < -9223372036854775808)) {
+            throw new \InvalidArgumentException('invalid value for $article_priority when calling ArticleStub., must be bigger than or equal to -9223372036854775808.');
+        }
+
+        $this->container['article_priority'] = $article_priority;
 
         return $this;
     }

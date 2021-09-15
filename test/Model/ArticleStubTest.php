@@ -182,4 +182,11 @@ class ArticleStubTest extends TestCase
     public function testPropertyLiveReporting()
     {
     }
+
+    /**
+     * Test attribute "article_priority"
+     */
+    public function testPropertyArticlePriority()
+    {
+    }
 }

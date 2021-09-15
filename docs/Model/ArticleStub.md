@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **paper** | [**\OpenAPI\Client\Model\Paper**](Paper.md) |  | 
 **share_url** | **string** |  | [optional] 
 **live_reporting** | **bool** |  | 
+**article_priority** | **int** |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
