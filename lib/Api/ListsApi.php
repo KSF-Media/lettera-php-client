@@ -1025,6 +1025,1292 @@ class ListsApi
     }
 
     /**
+     * Operation presetPresetCategoryGet
+     *
+     * Load a preset model
+     *
+     * @param  string $auth_user auth_user (required)
+     * @param  string $authorization authorization (required)
+     * @param  int $preset preset (required)
+     * @param  string $category category (required)
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Scoring
+     */
+    public function presetPresetCategoryGet($auth_user, $authorization, $preset, $category)
+    {
+        list($response) = $this->presetPresetCategoryGetWithHttpInfo($auth_user, $authorization, $preset, $category);
+        return $response;
+    }
+
+    /**
+     * Operation presetPresetCategoryGetWithHttpInfo
+     *
+     * Load a preset model
+     *
+     * @param  string $auth_user (required)
+     * @param  string $authorization (required)
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\Scoring, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function presetPresetCategoryGetWithHttpInfo($auth_user, $authorization, $preset, $category)
+    {
+        $request = $this->presetPresetCategoryGetRequest($auth_user, $authorization, $preset, $category);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\Scoring' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Scoring', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\Scoring';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Scoring',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation presetPresetCategoryGetAsync
+     *
+     * Load a preset model
+     *
+     * @param  string $auth_user (required)
+     * @param  string $authorization (required)
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function presetPresetCategoryGetAsync($auth_user, $authorization, $preset, $category)
+    {
+        return $this->presetPresetCategoryGetAsyncWithHttpInfo($auth_user, $authorization, $preset, $category)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation presetPresetCategoryGetAsyncWithHttpInfo
+     *
+     * Load a preset model
+     *
+     * @param  string $auth_user (required)
+     * @param  string $authorization (required)
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function presetPresetCategoryGetAsyncWithHttpInfo($auth_user, $authorization, $preset, $category)
+    {
+        $returnType = '\OpenAPI\Client\Model\Scoring';
+        $request = $this->presetPresetCategoryGetRequest($auth_user, $authorization, $preset, $category);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'presetPresetCategoryGet'
+     *
+     * @param  string $auth_user (required)
+     * @param  string $authorization (required)
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function presetPresetCategoryGetRequest($auth_user, $authorization, $preset, $category)
+    {
+        // verify the required parameter 'auth_user' is set
+        if ($auth_user === null || (is_array($auth_user) && count($auth_user) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $auth_user when calling presetPresetCategoryGet'
+            );
+        }
+        // verify the required parameter 'authorization' is set
+        if ($authorization === null || (is_array($authorization) && count($authorization) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $authorization when calling presetPresetCategoryGet'
+            );
+        }
+        // verify the required parameter 'preset' is set
+        if ($preset === null || (is_array($preset) && count($preset) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $preset when calling presetPresetCategoryGet'
+            );
+        }
+        if ($preset > 9223372036854775807) {
+            throw new \InvalidArgumentException('invalid value for "$preset" when calling ListsApi.presetPresetCategoryGet, must be smaller than or equal to 9223372036854775807.');
+        }
+        if ($preset < -9223372036854775808) {
+            throw new \InvalidArgumentException('invalid value for "$preset" when calling ListsApi.presetPresetCategoryGet, must be bigger than or equal to -9223372036854775808.');
+        }
+
+        // verify the required parameter 'category' is set
+        if ($category === null || (is_array($category) && count($category) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $category when calling presetPresetCategoryGet'
+            );
+        }
+
+        $resourcePath = '/preset/{preset}/{category}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // header params
+        if ($auth_user !== null) {
+            $headerParams['AuthUser'] = ObjectSerializer::toHeaderValue($auth_user);
+        }
+        // header params
+        if ($authorization !== null) {
+            $headerParams['Authorization'] = ObjectSerializer::toHeaderValue($authorization);
+        }
+
+        // path params
+        if ($preset !== null) {
+            $resourcePath = str_replace(
+                '{' . 'preset' . '}',
+                ObjectSerializer::toPathValue($preset),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($category !== null) {
+            $resourcePath = str_replace(
+                '{' . 'category' . '}',
+                ObjectSerializer::toPathValue($category),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation presetPresetCategoryPost
+     *
+     * Update a preset model
+     *
+     * @param  string $auth_user auth_user (required)
+     * @param  string $authorization authorization (required)
+     * @param  int $preset preset (required)
+     * @param  string $category category (required)
+     * @param  \OpenAPI\Client\Model\Scoring $body body (required)
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function presetPresetCategoryPost($auth_user, $authorization, $preset, $category, $body)
+    {
+        $this->presetPresetCategoryPostWithHttpInfo($auth_user, $authorization, $preset, $category, $body);
+    }
+
+    /**
+     * Operation presetPresetCategoryPostWithHttpInfo
+     *
+     * Update a preset model
+     *
+     * @param  string $auth_user (required)
+     * @param  string $authorization (required)
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     * @param  \OpenAPI\Client\Model\Scoring $body (required)
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function presetPresetCategoryPostWithHttpInfo($auth_user, $authorization, $preset, $category, $body)
+    {
+        $request = $this->presetPresetCategoryPostRequest($auth_user, $authorization, $preset, $category, $body);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation presetPresetCategoryPostAsync
+     *
+     * Update a preset model
+     *
+     * @param  string $auth_user (required)
+     * @param  string $authorization (required)
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     * @param  \OpenAPI\Client\Model\Scoring $body (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function presetPresetCategoryPostAsync($auth_user, $authorization, $preset, $category, $body)
+    {
+        return $this->presetPresetCategoryPostAsyncWithHttpInfo($auth_user, $authorization, $preset, $category, $body)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation presetPresetCategoryPostAsyncWithHttpInfo
+     *
+     * Update a preset model
+     *
+     * @param  string $auth_user (required)
+     * @param  string $authorization (required)
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     * @param  \OpenAPI\Client\Model\Scoring $body (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function presetPresetCategoryPostAsyncWithHttpInfo($auth_user, $authorization, $preset, $category, $body)
+    {
+        $returnType = '';
+        $request = $this->presetPresetCategoryPostRequest($auth_user, $authorization, $preset, $category, $body);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'presetPresetCategoryPost'
+     *
+     * @param  string $auth_user (required)
+     * @param  string $authorization (required)
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     * @param  \OpenAPI\Client\Model\Scoring $body (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function presetPresetCategoryPostRequest($auth_user, $authorization, $preset, $category, $body)
+    {
+        // verify the required parameter 'auth_user' is set
+        if ($auth_user === null || (is_array($auth_user) && count($auth_user) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $auth_user when calling presetPresetCategoryPost'
+            );
+        }
+        // verify the required parameter 'authorization' is set
+        if ($authorization === null || (is_array($authorization) && count($authorization) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $authorization when calling presetPresetCategoryPost'
+            );
+        }
+        // verify the required parameter 'preset' is set
+        if ($preset === null || (is_array($preset) && count($preset) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $preset when calling presetPresetCategoryPost'
+            );
+        }
+        if ($preset > 9223372036854775807) {
+            throw new \InvalidArgumentException('invalid value for "$preset" when calling ListsApi.presetPresetCategoryPost, must be smaller than or equal to 9223372036854775807.');
+        }
+        if ($preset < -9223372036854775808) {
+            throw new \InvalidArgumentException('invalid value for "$preset" when calling ListsApi.presetPresetCategoryPost, must be bigger than or equal to -9223372036854775808.');
+        }
+
+        // verify the required parameter 'category' is set
+        if ($category === null || (is_array($category) && count($category) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $category when calling presetPresetCategoryPost'
+            );
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling presetPresetCategoryPost'
+            );
+        }
+
+        $resourcePath = '/preset/{preset}/{category}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // header params
+        if ($auth_user !== null) {
+            $headerParams['AuthUser'] = ObjectSerializer::toHeaderValue($auth_user);
+        }
+        // header params
+        if ($authorization !== null) {
+            $headerParams['Authorization'] = ObjectSerializer::toHeaderValue($authorization);
+        }
+
+        // path params
+        if ($preset !== null) {
+            $resourcePath = str_replace(
+                '{' . 'preset' . '}',
+                ObjectSerializer::toPathValue($preset),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($category !== null) {
+            $resourcePath = str_replace(
+                '{' . 'category' . '}',
+                ObjectSerializer::toPathValue($category),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json;charset=utf-8']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation scoredPost
+     *
+     * List recent articles sorted by given scoring weights
+     *
+     * @param  string $category category (required)
+     * @param  string $paper paper (required)
+     * @param  \OpenAPI\Client\Model\Scoring $body body (required)
+     * @param  int $start start (optional)
+     * @param  int $limit limit (optional)
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ArticleStub[]
+     */
+    public function scoredPost($category, $paper, $body, $start = null, $limit = null)
+    {
+        list($response) = $this->scoredPostWithHttpInfo($category, $paper, $body, $start, $limit);
+        return $response;
+    }
+
+    /**
+     * Operation scoredPostWithHttpInfo
+     *
+     * List recent articles sorted by given scoring weights
+     *
+     * @param  string $category (required)
+     * @param  string $paper (required)
+     * @param  \OpenAPI\Client\Model\Scoring $body (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\ArticleStub[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function scoredPostWithHttpInfo($category, $paper, $body, $start = null, $limit = null)
+    {
+        $request = $this->scoredPostRequest($category, $paper, $body, $start, $limit);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\ArticleStub[]' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ArticleStub[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ArticleStub[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation scoredPostAsync
+     *
+     * List recent articles sorted by given scoring weights
+     *
+     * @param  string $category (required)
+     * @param  string $paper (required)
+     * @param  \OpenAPI\Client\Model\Scoring $body (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function scoredPostAsync($category, $paper, $body, $start = null, $limit = null)
+    {
+        return $this->scoredPostAsyncWithHttpInfo($category, $paper, $body, $start, $limit)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation scoredPostAsyncWithHttpInfo
+     *
+     * List recent articles sorted by given scoring weights
+     *
+     * @param  string $category (required)
+     * @param  string $paper (required)
+     * @param  \OpenAPI\Client\Model\Scoring $body (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function scoredPostAsyncWithHttpInfo($category, $paper, $body, $start = null, $limit = null)
+    {
+        $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+        $request = $this->scoredPostRequest($category, $paper, $body, $start, $limit);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'scoredPost'
+     *
+     * @param  string $category (required)
+     * @param  string $paper (required)
+     * @param  \OpenAPI\Client\Model\Scoring $body (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function scoredPostRequest($category, $paper, $body, $start = null, $limit = null)
+    {
+        // verify the required parameter 'category' is set
+        if ($category === null || (is_array($category) && count($category) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $category when calling scoredPost'
+            );
+        }
+        // verify the required parameter 'paper' is set
+        if ($paper === null || (is_array($paper) && count($paper) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $paper when calling scoredPost'
+            );
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling scoredPost'
+            );
+        }
+        if ($start !== null && $start > 9223372036854775807) {
+            throw new \InvalidArgumentException('invalid value for "$start" when calling ListsApi.scoredPost, must be smaller than or equal to 9223372036854775807.');
+        }
+        if ($start !== null && $start < -9223372036854775808) {
+            throw new \InvalidArgumentException('invalid value for "$start" when calling ListsApi.scoredPost, must be bigger than or equal to -9223372036854775808.');
+        }
+
+        if ($limit !== null && $limit > 9223372036854775807) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ListsApi.scoredPost, must be smaller than or equal to 9223372036854775807.');
+        }
+        if ($limit !== null && $limit < -9223372036854775808) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ListsApi.scoredPost, must be bigger than or equal to -9223372036854775808.');
+        }
+
+
+        $resourcePath = '/scored';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($start !== null) {
+            $queryParams['start'] = ObjectSerializer::toQueryValue($start);
+        }
+        // query params
+        if ($limit !== null) {
+            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+        }
+        // query params
+        if ($category !== null) {
+            $queryParams['category'] = ObjectSerializer::toQueryValue($category);
+        }
+        // query params
+        if ($paper !== null) {
+            $queryParams['paper'] = ObjectSerializer::toQueryValue($paper);
+        }
+
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation scoredPresetGet
+     *
+     * List recent articles sorted by preset scoring
+     *
+     * @param  int $preset preset (required)
+     * @param  string $category category (required)
+     * @param  int $start start (optional)
+     * @param  int $limit limit (optional)
+     * @param  string $paper paper (optional)
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ArticleStub[]
+     */
+    public function scoredPresetGet($preset, $category, $start = null, $limit = null, $paper = null)
+    {
+        list($response) = $this->scoredPresetGetWithHttpInfo($preset, $category, $start, $limit, $paper);
+        return $response;
+    }
+
+    /**
+     * Operation scoredPresetGetWithHttpInfo
+     *
+     * List recent articles sorted by preset scoring
+     *
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     * @param  string $paper (optional)
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\ArticleStub[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function scoredPresetGetWithHttpInfo($preset, $category, $start = null, $limit = null, $paper = null)
+    {
+        $request = $this->scoredPresetGetRequest($preset, $category, $start, $limit, $paper);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\ArticleStub[]' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ArticleStub[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ArticleStub[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation scoredPresetGetAsync
+     *
+     * List recent articles sorted by preset scoring
+     *
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     * @param  string $paper (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function scoredPresetGetAsync($preset, $category, $start = null, $limit = null, $paper = null)
+    {
+        return $this->scoredPresetGetAsyncWithHttpInfo($preset, $category, $start, $limit, $paper)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation scoredPresetGetAsyncWithHttpInfo
+     *
+     * List recent articles sorted by preset scoring
+     *
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     * @param  string $paper (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function scoredPresetGetAsyncWithHttpInfo($preset, $category, $start = null, $limit = null, $paper = null)
+    {
+        $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+        $request = $this->scoredPresetGetRequest($preset, $category, $start, $limit, $paper);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'scoredPresetGet'
+     *
+     * @param  int $preset (required)
+     * @param  string $category (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     * @param  string $paper (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function scoredPresetGetRequest($preset, $category, $start = null, $limit = null, $paper = null)
+    {
+        // verify the required parameter 'preset' is set
+        if ($preset === null || (is_array($preset) && count($preset) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $preset when calling scoredPresetGet'
+            );
+        }
+        if ($preset > 9223372036854775807) {
+            throw new \InvalidArgumentException('invalid value for "$preset" when calling ListsApi.scoredPresetGet, must be smaller than or equal to 9223372036854775807.');
+        }
+        if ($preset < -9223372036854775808) {
+            throw new \InvalidArgumentException('invalid value for "$preset" when calling ListsApi.scoredPresetGet, must be bigger than or equal to -9223372036854775808.');
+        }
+
+        // verify the required parameter 'category' is set
+        if ($category === null || (is_array($category) && count($category) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $category when calling scoredPresetGet'
+            );
+        }
+        if ($start !== null && $start > 9223372036854775807) {
+            throw new \InvalidArgumentException('invalid value for "$start" when calling ListsApi.scoredPresetGet, must be smaller than or equal to 9223372036854775807.');
+        }
+        if ($start !== null && $start < -9223372036854775808) {
+            throw new \InvalidArgumentException('invalid value for "$start" when calling ListsApi.scoredPresetGet, must be bigger than or equal to -9223372036854775808.');
+        }
+
+        if ($limit !== null && $limit > 9223372036854775807) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ListsApi.scoredPresetGet, must be smaller than or equal to 9223372036854775807.');
+        }
+        if ($limit !== null && $limit < -9223372036854775808) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ListsApi.scoredPresetGet, must be bigger than or equal to -9223372036854775808.');
+        }
+
+
+        $resourcePath = '/scored/{preset}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($start !== null) {
+            $queryParams['start'] = ObjectSerializer::toQueryValue($start);
+        }
+        // query params
+        if ($limit !== null) {
+            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+        }
+        // query params
+        if ($category !== null) {
+            $queryParams['category'] = ObjectSerializer::toQueryValue($category);
+        }
+        // query params
+        if ($paper !== null) {
+            $queryParams['paper'] = ObjectSerializer::toQueryValue($paper);
+        }
+
+        // path params
+        if ($preset !== null) {
+            $resourcePath = str_replace(
+                '{' . 'preset' . '}',
+                ObjectSerializer::toPathValue($preset),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation searchGet
      *
      * Returns a list of search results

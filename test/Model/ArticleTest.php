@@ -224,4 +224,11 @@ class ArticleTest extends TestCase
     public function testPropertyArticlePriority()
     {
     }
+
+    /**
+     * Test attribute "article_time_on_site"
+     */
+    public function testPropertyArticleTimeOnSite()
+    {
+    }
 }

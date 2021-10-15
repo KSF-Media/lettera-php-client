@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **analytics_category** | **string** |  | [optional] 
 **analytics_section** | **string** |  | [optional] 
 **article_priority** | **int** |  | [optional] 
+**article_time_on_site** | **int** |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

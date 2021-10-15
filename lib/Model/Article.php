@@ -77,7 +77,8 @@ class Article implements ModelInterface, ArrayAccess
         'paper' => '\OpenAPI\Client\Model\Paper',
         'analytics_category' => 'string',
         'analytics_section' => 'string',
-        'article_priority' => 'int'
+        'article_priority' => 'int',
+        'article_time_on_site' => 'int'
     ];
 
     /**
@@ -106,7 +107,8 @@ class Article implements ModelInterface, ArrayAccess
         'paper' => null,
         'analytics_category' => null,
         'analytics_section' => null,
-        'article_priority' => null
+        'article_priority' => null,
+        'article_time_on_site' => null
     ];
 
     /**
@@ -156,7 +158,8 @@ class Article implements ModelInterface, ArrayAccess
         'paper' => 'paper',
         'analytics_category' => 'analyticsCategory',
         'analytics_section' => 'analyticsSection',
-        'article_priority' => 'articlePriority'
+        'article_priority' => 'articlePriority',
+        'article_time_on_site' => 'articleTimeOnSite'
     ];
 
     /**
@@ -185,7 +188,8 @@ class Article implements ModelInterface, ArrayAccess
         'paper' => 'setPaper',
         'analytics_category' => 'setAnalyticsCategory',
         'analytics_section' => 'setAnalyticsSection',
-        'article_priority' => 'setArticlePriority'
+        'article_priority' => 'setArticlePriority',
+        'article_time_on_site' => 'setArticleTimeOnSite'
     ];
 
     /**
@@ -214,7 +218,8 @@ class Article implements ModelInterface, ArrayAccess
         'paper' => 'getPaper',
         'analytics_category' => 'getAnalyticsCategory',
         'analytics_section' => 'getAnalyticsSection',
-        'article_priority' => 'getArticlePriority'
+        'article_priority' => 'getArticlePriority',
+        'article_time_on_site' => 'getArticleTimeOnSite'
     ];
 
     /**
@@ -298,6 +303,7 @@ class Article implements ModelInterface, ArrayAccess
         $this->container['analytics_category'] = isset($data['analytics_category']) ? $data['analytics_category'] : null;
         $this->container['analytics_section'] = isset($data['analytics_section']) ? $data['analytics_section'] : null;
         $this->container['article_priority'] = isset($data['article_priority']) ? $data['article_priority'] : null;
+        $this->container['article_time_on_site'] = isset($data['article_time_on_site']) ? $data['article_time_on_site'] : null;
     }
 
     /**
@@ -345,6 +351,14 @@ class Article implements ModelInterface, ArrayAccess
 
         if (!is_null($this->container['article_priority']) && ($this->container['article_priority'] < -9223372036854775808)) {
             $invalidProperties[] = "invalid value for 'article_priority', must be bigger than or equal to -9223372036854775808.";
+        }
+
+        if (!is_null($this->container['article_time_on_site']) && ($this->container['article_time_on_site'] > 9223372036854775807)) {
+            $invalidProperties[] = "invalid value for 'article_time_on_site', must be smaller than or equal to 9223372036854775807.";
+        }
+
+        if (!is_null($this->container['article_time_on_site']) && ($this->container['article_time_on_site'] < -9223372036854775808)) {
+            $invalidProperties[] = "invalid value for 'article_time_on_site', must be bigger than or equal to -9223372036854775808.";
         }
 
         return $invalidProperties;
@@ -870,6 +884,38 @@ class Article implements ModelInterface, ArrayAccess
         }
 
         $this->container['article_priority'] = $article_priority;
+
+        return $this;
+    }
+
+    /**
+     * Gets article_time_on_site
+     *
+     * @return int|null
+     */
+    public function getArticleTimeOnSite()
+    {
+        return $this->container['article_time_on_site'];
+    }
+
+    /**
+     * Sets article_time_on_site
+     *
+     * @param int|null $article_time_on_site article_time_on_site
+     *
+     * @return $this
+     */
+    public function setArticleTimeOnSite($article_time_on_site)
+    {
+
+        if (!is_null($article_time_on_site) && ($article_time_on_site > 9223372036854775807)) {
+            throw new \InvalidArgumentException('invalid value for $article_time_on_site when calling Article., must be smaller than or equal to 9223372036854775807.');
+        }
+        if (!is_null($article_time_on_site) && ($article_time_on_site < -9223372036854775808)) {
+            throw new \InvalidArgumentException('invalid value for $article_time_on_site when calling Article., must be bigger than or equal to -9223372036854775808.');
+        }
+
+        $this->container['article_time_on_site'] = $article_time_on_site;
 
         return $this;
     }
