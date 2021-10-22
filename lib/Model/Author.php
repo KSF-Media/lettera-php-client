@@ -58,7 +58,8 @@ class Author implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'byline' => 'string',
-        'image' => 'string'
+        'image' => 'string',
+        'email' => 'string'
     ];
 
     /**
@@ -68,7 +69,8 @@ class Author implements ModelInterface, ArrayAccess
       */
     protected static $openAPIFormats = [
         'byline' => null,
-        'image' => null
+        'image' => null,
+        'email' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class Author implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'byline' => 'byline',
-        'image' => 'image'
+        'image' => 'image',
+        'email' => 'email'
     ];
 
     /**
@@ -109,7 +112,8 @@ class Author implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'byline' => 'setByline',
-        'image' => 'setImage'
+        'image' => 'setImage',
+        'email' => 'setEmail'
     ];
 
     /**
@@ -119,7 +123,8 @@ class Author implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'byline' => 'getByline',
-        'image' => 'getImage'
+        'image' => 'getImage',
+        'email' => 'getEmail'
     ];
 
     /**
@@ -184,6 +189,7 @@ class Author implements ModelInterface, ArrayAccess
     {
         $this->container['byline'] = isset($data['byline']) ? $data['byline'] : null;
         $this->container['image'] = isset($data['image']) ? $data['image'] : null;
+        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
     }
 
     /**
@@ -257,6 +263,30 @@ class Author implements ModelInterface, ArrayAccess
     public function setImage($image)
     {
         $this->container['image'] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return string|null
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param string|null $email email
+     *
+     * @return $this
+     */
+    public function setEmail($email)
+    {
+        $this->container['email'] = $email;
 
         return $this;
     }
