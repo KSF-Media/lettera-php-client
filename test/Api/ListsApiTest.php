@@ -151,4 +151,14 @@ class ListsApiTest extends TestCase
     public function testSearchGet()
     {
     }
+
+    /**
+     * Test case for tagTagGet
+     *
+     * Returns a list of latest articles by tag.
+     *
+     */
+    public function testTagTagGet()
+    {
+    }
 }

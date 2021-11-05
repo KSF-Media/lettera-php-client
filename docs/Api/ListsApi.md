@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**scoredPost**](ListsApi.md#scoredPost) | **POST** /scored | List recent articles sorted by given scoring weights
 [**scoredPresetGet**](ListsApi.md#scoredPresetGet) | **GET** /scored/{preset} | List recent articles sorted by preset scoring
 [**searchGet**](ListsApi.md#searchGet) | **GET** /search | Returns a list of search results
+[**tagTagGet**](ListsApi.md#tagTagGet) | **GET** /tag/{tag} | Returns a list of latest articles by tag
 
 
 
@@ -481,6 +482,66 @@ Name | Type | Description  | Notes
  **limit** | **int**|  | [optional]
  **paper** | **string**|  | [optional]
  **content_query** | **string**|  | [optional]
+
+### Return type
+
+[**\OpenAPI\Client\Model\ArticleStub[]**](../Model/ArticleStub.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json;charset=utf-8
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## tagTagGet
+
+> \OpenAPI\Client\Model\ArticleStub[] tagTagGet($tag, $start, $limit, $paper)
+
+Returns a list of latest articles by tag
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new OpenAPI\Client\Api\ListsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$tag = 'tag_example'; // string | 
+$start = 56; // int | 
+$limit = 56; // int | 
+$paper = 'paper_example'; // string | 
+
+try {
+    $result = $apiInstance->tagTagGet($tag, $start, $limit, $paper);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ListsApi->tagTagGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tag** | **string**|  |
+ **start** | **int**|  | [optional]
+ **limit** | **int**|  | [optional]
+ **paper** | **string**|  | [optional]
 
 ### Return type
 

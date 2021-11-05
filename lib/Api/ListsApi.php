@@ -2614,6 +2614,319 @@ class ListsApi
     }
 
     /**
+     * Operation tagTagGet
+     *
+     * Returns a list of latest articles by tag
+     *
+     * @param  string $tag tag (required)
+     * @param  int $start start (optional)
+     * @param  int $limit limit (optional)
+     * @param  string $paper paper (optional)
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ArticleStub[]
+     */
+    public function tagTagGet($tag, $start = null, $limit = null, $paper = null)
+    {
+        list($response) = $this->tagTagGetWithHttpInfo($tag, $start, $limit, $paper);
+        return $response;
+    }
+
+    /**
+     * Operation tagTagGetWithHttpInfo
+     *
+     * Returns a list of latest articles by tag
+     *
+     * @param  string $tag (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     * @param  string $paper (optional)
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\ArticleStub[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function tagTagGetWithHttpInfo($tag, $start = null, $limit = null, $paper = null)
+    {
+        $request = $this->tagTagGetRequest($tag, $start, $limit, $paper);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\ArticleStub[]' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ArticleStub[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ArticleStub[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation tagTagGetAsync
+     *
+     * Returns a list of latest articles by tag
+     *
+     * @param  string $tag (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     * @param  string $paper (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function tagTagGetAsync($tag, $start = null, $limit = null, $paper = null)
+    {
+        return $this->tagTagGetAsyncWithHttpInfo($tag, $start, $limit, $paper)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation tagTagGetAsyncWithHttpInfo
+     *
+     * Returns a list of latest articles by tag
+     *
+     * @param  string $tag (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     * @param  string $paper (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function tagTagGetAsyncWithHttpInfo($tag, $start = null, $limit = null, $paper = null)
+    {
+        $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+        $request = $this->tagTagGetRequest($tag, $start, $limit, $paper);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'tagTagGet'
+     *
+     * @param  string $tag (required)
+     * @param  int $start (optional)
+     * @param  int $limit (optional)
+     * @param  string $paper (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function tagTagGetRequest($tag, $start = null, $limit = null, $paper = null)
+    {
+        // verify the required parameter 'tag' is set
+        if ($tag === null || (is_array($tag) && count($tag) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $tag when calling tagTagGet'
+            );
+        }
+        if ($start !== null && $start > 9223372036854775807) {
+            throw new \InvalidArgumentException('invalid value for "$start" when calling ListsApi.tagTagGet, must be smaller than or equal to 9223372036854775807.');
+        }
+        if ($start !== null && $start < -9223372036854775808) {
+            throw new \InvalidArgumentException('invalid value for "$start" when calling ListsApi.tagTagGet, must be bigger than or equal to -9223372036854775808.');
+        }
+
+        if ($limit !== null && $limit > 9223372036854775807) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ListsApi.tagTagGet, must be smaller than or equal to 9223372036854775807.');
+        }
+        if ($limit !== null && $limit < -9223372036854775808) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ListsApi.tagTagGet, must be bigger than or equal to -9223372036854775808.');
+        }
+
+
+        $resourcePath = '/tag/{tag}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($start !== null) {
+            $queryParams['start'] = ObjectSerializer::toQueryValue($start);
+        }
+        // query params
+        if ($limit !== null) {
+            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+        }
+        // query params
+        if ($paper !== null) {
+            $queryParams['paper'] = ObjectSerializer::toQueryValue($paper);
+        }
+
+        // path params
+        if ($tag !== null) {
+            $resourcePath = str_replace(
+                '{' . 'tag' . '}',
+                ObjectSerializer::toPathValue($tag),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
