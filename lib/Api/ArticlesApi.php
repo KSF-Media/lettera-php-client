@@ -121,15 +121,16 @@ class ArticlesApi
      * @param  string $uuid uuid (required)
      * @param  string $auth_user auth_user (optional)
      * @param  string $authorization authorization (optional)
+     * @param  string $x_real_ip x_real_ip (optional)
      * @param  bool $textonly textonly (optional, default to false)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Article
      */
-    public function articleUuidGet($uuid, $auth_user = null, $authorization = null, $textonly = false)
+    public function articleUuidGet($uuid, $auth_user = null, $authorization = null, $x_real_ip = null, $textonly = false)
     {
-        list($response) = $this->articleUuidGetWithHttpInfo($uuid, $auth_user, $authorization, $textonly);
+        list($response) = $this->articleUuidGetWithHttpInfo($uuid, $auth_user, $authorization, $x_real_ip, $textonly);
         return $response;
     }
 
@@ -139,15 +140,16 @@ class ArticlesApi
      * @param  string $uuid (required)
      * @param  string $auth_user (optional)
      * @param  string $authorization (optional)
+     * @param  string $x_real_ip (optional)
      * @param  bool $textonly (optional, default to false)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Article, HTTP status code, HTTP response headers (array of strings)
      */
-    public function articleUuidGetWithHttpInfo($uuid, $auth_user = null, $authorization = null, $textonly = false)
+    public function articleUuidGetWithHttpInfo($uuid, $auth_user = null, $authorization = null, $x_real_ip = null, $textonly = false)
     {
-        $request = $this->articleUuidGetRequest($uuid, $auth_user, $authorization, $textonly);
+        $request = $this->articleUuidGetRequest($uuid, $auth_user, $authorization, $x_real_ip, $textonly);
 
         try {
             $options = $this->createHttpClientOption();
@@ -230,14 +232,15 @@ class ArticlesApi
      * @param  string $uuid (required)
      * @param  string $auth_user (optional)
      * @param  string $authorization (optional)
+     * @param  string $x_real_ip (optional)
      * @param  bool $textonly (optional, default to false)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function articleUuidGetAsync($uuid, $auth_user = null, $authorization = null, $textonly = false)
+    public function articleUuidGetAsync($uuid, $auth_user = null, $authorization = null, $x_real_ip = null, $textonly = false)
     {
-        return $this->articleUuidGetAsyncWithHttpInfo($uuid, $auth_user, $authorization, $textonly)
+        return $this->articleUuidGetAsyncWithHttpInfo($uuid, $auth_user, $authorization, $x_real_ip, $textonly)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -253,15 +256,16 @@ class ArticlesApi
      * @param  string $uuid (required)
      * @param  string $auth_user (optional)
      * @param  string $authorization (optional)
+     * @param  string $x_real_ip (optional)
      * @param  bool $textonly (optional, default to false)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function articleUuidGetAsyncWithHttpInfo($uuid, $auth_user = null, $authorization = null, $textonly = false)
+    public function articleUuidGetAsyncWithHttpInfo($uuid, $auth_user = null, $authorization = null, $x_real_ip = null, $textonly = false)
     {
         $returnType = '\OpenAPI\Client\Model\Article';
-        $request = $this->articleUuidGetRequest($uuid, $auth_user, $authorization, $textonly);
+        $request = $this->articleUuidGetRequest($uuid, $auth_user, $authorization, $x_real_ip, $textonly);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -303,12 +307,13 @@ class ArticlesApi
      * @param  string $uuid (required)
      * @param  string $auth_user (optional)
      * @param  string $authorization (optional)
+     * @param  string $x_real_ip (optional)
      * @param  bool $textonly (optional, default to false)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function articleUuidGetRequest($uuid, $auth_user = null, $authorization = null, $textonly = false)
+    protected function articleUuidGetRequest($uuid, $auth_user = null, $authorization = null, $x_real_ip = null, $textonly = false)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -335,6 +340,10 @@ class ArticlesApi
         // header params
         if ($authorization !== null) {
             $headerParams['Authorization'] = ObjectSerializer::toHeaderValue($authorization);
+        }
+        // header params
+        if ($x_real_ip !== null) {
+            $headerParams['X-Real-Ip'] = ObjectSerializer::toHeaderValue($x_real_ip);
         }
 
         // path params

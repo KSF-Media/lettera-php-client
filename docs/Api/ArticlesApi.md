@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## articleUuidGet
 
-> \OpenAPI\Client\Model\Article articleUuidGet($uuid, $auth_user, $authorization, $textonly)
+> \OpenAPI\Client\Model\Article articleUuidGet($uuid, $auth_user, $authorization, $x_real_ip, $textonly)
 
 
 
@@ -32,10 +32,11 @@ $apiInstance = new OpenAPI\Client\Api\ArticlesApi(
 $uuid = 'uuid_example'; // string | 
 $auth_user = 'auth_user_example'; // string | 
 $authorization = 'authorization_example'; // string | 
+$x_real_ip = 'x_real_ip_example'; // string | 
 $textonly = false; // bool | 
 
 try {
-    $result = $apiInstance->articleUuidGet($uuid, $auth_user, $authorization, $textonly);
+    $result = $apiInstance->articleUuidGet($uuid, $auth_user, $authorization, $x_real_ip, $textonly);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ArticlesApi->articleUuidGet: ', $e->getMessage(), PHP_EOL;
@@ -51,6 +52,7 @@ Name | Type | Description  | Notes
  **uuid** | [**string**](../Model/.md)|  |
  **auth_user** | [**string**](../Model/.md)|  | [optional]
  **authorization** | **string**|  | [optional]
+ **x_real_ip** | **string**|  | [optional]
  **textonly** | **bool**|  | [optional] [default to false]
 
 ### Return type
