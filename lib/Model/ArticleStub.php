@@ -59,6 +59,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'uuid' => 'string',
         'title' => 'string',
+        'article_title' => 'string',
         'authors' => '\OpenAPI\Client\Model\Author[]',
         'tags' => 'string[]',
         'preamble' => 'string',
@@ -83,6 +84,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
         'title' => null,
+        'article_title' => null,
         'authors' => null,
         'tags' => null,
         'preamble' => null,
@@ -128,6 +130,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'uuid' => 'uuid',
         'title' => 'title',
+        'article_title' => 'articleTitle',
         'authors' => 'authors',
         'tags' => 'tags',
         'preamble' => 'preamble',
@@ -152,6 +155,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
     protected static $setters = [
         'uuid' => 'setUuid',
         'title' => 'setTitle',
+        'article_title' => 'setArticleTitle',
         'authors' => 'setAuthors',
         'tags' => 'setTags',
         'preamble' => 'setPreamble',
@@ -176,6 +180,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
     protected static $getters = [
         'uuid' => 'getUuid',
         'title' => 'getTitle',
+        'article_title' => 'getArticleTitle',
         'authors' => 'getAuthors',
         'tags' => 'getTags',
         'preamble' => 'getPreamble',
@@ -254,6 +259,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
     {
         $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
         $this->container['title'] = isset($data['title']) ? $data['title'] : null;
+        $this->container['article_title'] = isset($data['article_title']) ? $data['article_title'] : null;
         $this->container['authors'] = isset($data['authors']) ? $data['authors'] : null;
         $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
         $this->container['preamble'] = isset($data['preamble']) ? $data['preamble'] : null;
@@ -284,6 +290,9 @@ class ArticleStub implements ModelInterface, ArrayAccess
         }
         if ($this->container['title'] === null) {
             $invalidProperties[] = "'title' can't be null";
+        }
+        if ($this->container['article_title'] === null) {
+            $invalidProperties[] = "'article_title' can't be null";
         }
         if ($this->container['authors'] === null) {
             $invalidProperties[] = "'authors' can't be null";
@@ -373,6 +382,30 @@ class ArticleStub implements ModelInterface, ArrayAccess
     public function setTitle($title)
     {
         $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets article_title
+     *
+     * @return string
+     */
+    public function getArticleTitle()
+    {
+        return $this->container['article_title'];
+    }
+
+    /**
+     * Sets article_title
+     *
+     * @param string $article_title article_title
+     *
+     * @return $this
+     */
+    public function setArticleTitle($article_title)
+    {
+        $this->container['article_title'] = $article_title;
 
         return $this;
     }

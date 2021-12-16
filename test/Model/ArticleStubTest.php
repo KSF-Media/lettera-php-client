@@ -93,6 +93,13 @@ class ArticleStubTest extends TestCase
     }
 
     /**
+     * Test attribute "article_title"
+     */
+    public function testPropertyArticleTitle()
+    {
+    }
+
+    /**
      * Test attribute "authors"
      */
     public function testPropertyAuthors()
