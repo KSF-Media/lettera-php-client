@@ -121,6 +121,13 @@ class ArticleStubTest extends TestCase
     }
 
     /**
+     * Test attribute "main_image"
+     */
+    public function testPropertyMainImage()
+    {
+    }
+
+    /**
      * Test attribute "list_image"
      */
     public function testPropertyListImage()

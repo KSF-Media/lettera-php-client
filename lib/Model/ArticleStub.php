@@ -63,6 +63,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'authors' => '\OpenAPI\Client\Model\Author[]',
         'tags' => 'string[]',
         'preamble' => 'string',
+        'main_image' => '\OpenAPI\Client\Model\ImageInfo',
         'list_image' => '\OpenAPI\Client\Model\ImageInfo',
         'premium' => 'bool',
         'publishing_time' => 'string',
@@ -88,6 +89,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'authors' => null,
         'tags' => null,
         'preamble' => null,
+        'main_image' => null,
         'list_image' => null,
         'premium' => null,
         'publishing_time' => 'yyyy-mm-ddThh:MM:ssZ',
@@ -134,6 +136,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'authors' => 'authors',
         'tags' => 'tags',
         'preamble' => 'preamble',
+        'main_image' => 'mainImage',
         'list_image' => 'listImage',
         'premium' => 'premium',
         'publishing_time' => 'publishingTime',
@@ -159,6 +162,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'authors' => 'setAuthors',
         'tags' => 'setTags',
         'preamble' => 'setPreamble',
+        'main_image' => 'setMainImage',
         'list_image' => 'setListImage',
         'premium' => 'setPremium',
         'publishing_time' => 'setPublishingTime',
@@ -184,6 +188,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
         'authors' => 'getAuthors',
         'tags' => 'getTags',
         'preamble' => 'getPreamble',
+        'main_image' => 'getMainImage',
         'list_image' => 'getListImage',
         'premium' => 'getPremium',
         'publishing_time' => 'getPublishingTime',
@@ -263,6 +268,7 @@ class ArticleStub implements ModelInterface, ArrayAccess
         $this->container['authors'] = isset($data['authors']) ? $data['authors'] : null;
         $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
         $this->container['preamble'] = isset($data['preamble']) ? $data['preamble'] : null;
+        $this->container['main_image'] = isset($data['main_image']) ? $data['main_image'] : null;
         $this->container['list_image'] = isset($data['list_image']) ? $data['list_image'] : null;
         $this->container['premium'] = isset($data['premium']) ? $data['premium'] : null;
         $this->container['publishing_time'] = isset($data['publishing_time']) ? $data['publishing_time'] : null;
@@ -478,6 +484,30 @@ class ArticleStub implements ModelInterface, ArrayAccess
     public function setPreamble($preamble)
     {
         $this->container['preamble'] = $preamble;
+
+        return $this;
+    }
+
+    /**
+     * Gets main_image
+     *
+     * @return \OpenAPI\Client\Model\ImageInfo|null
+     */
+    public function getMainImage()
+    {
+        return $this->container['main_image'];
+    }
+
+    /**
+     * Sets main_image
+     *
+     * @param \OpenAPI\Client\Model\ImageInfo|null $main_image main_image
+     *
+     * @return $this
+     */
+    public function setMainImage($main_image)
+    {
+        $this->container['main_image'] = $main_image;
 
         return $this;
     }

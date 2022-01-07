@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **authors** | [**\OpenAPI\Client\Model\Author[]**](Author.md) |  | 
 **tags** | **string[]** |  | 
 **preamble** | **string** |  | [optional] 
+**main_image** | [**\OpenAPI\Client\Model\ImageInfo**](ImageInfo.md) |  | [optional] 
 **list_image** | [**\OpenAPI\Client\Model\ImageInfo**](ImageInfo.md) |  | [optional] 
 **premium** | **bool** |  | 
 **publishing_time** | **string** |  | 
