@@ -112,4 +112,11 @@ class ImageInfoTest extends TestCase
     public function testPropertyByline()
     {
     }
+
+    /**
+     * Test attribute "classes"
+     */
+    public function testPropertyClasses()
+    {
+    }
 }

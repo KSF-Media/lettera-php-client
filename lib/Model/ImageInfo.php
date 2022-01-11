@@ -61,7 +61,8 @@ class ImageInfo implements ModelInterface, ArrayAccess
         'thumb' => 'string',
         'caption' => 'string',
         'alignment' => '\OpenAPI\Client\Model\Alignment',
-        'byline' => 'string'
+        'byline' => 'string',
+        'classes' => 'string[]'
     ];
 
     /**
@@ -74,7 +75,8 @@ class ImageInfo implements ModelInterface, ArrayAccess
         'thumb' => null,
         'caption' => null,
         'alignment' => null,
-        'byline' => null
+        'byline' => null,
+        'classes' => null
     ];
 
     /**
@@ -108,7 +110,8 @@ class ImageInfo implements ModelInterface, ArrayAccess
         'thumb' => 'thumb',
         'caption' => 'caption',
         'alignment' => 'alignment',
-        'byline' => 'byline'
+        'byline' => 'byline',
+        'classes' => 'classes'
     ];
 
     /**
@@ -121,7 +124,8 @@ class ImageInfo implements ModelInterface, ArrayAccess
         'thumb' => 'setThumb',
         'caption' => 'setCaption',
         'alignment' => 'setAlignment',
-        'byline' => 'setByline'
+        'byline' => 'setByline',
+        'classes' => 'setClasses'
     ];
 
     /**
@@ -134,7 +138,8 @@ class ImageInfo implements ModelInterface, ArrayAccess
         'thumb' => 'getThumb',
         'caption' => 'getCaption',
         'alignment' => 'getAlignment',
-        'byline' => 'getByline'
+        'byline' => 'getByline',
+        'classes' => 'getClasses'
     ];
 
     /**
@@ -202,6 +207,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
         $this->container['caption'] = isset($data['caption']) ? $data['caption'] : null;
         $this->container['alignment'] = isset($data['alignment']) ? $data['alignment'] : null;
         $this->container['byline'] = isset($data['byline']) ? $data['byline'] : null;
+        $this->container['classes'] = isset($data['classes']) ? $data['classes'] : null;
     }
 
     /**
@@ -218,6 +224,9 @@ class ImageInfo implements ModelInterface, ArrayAccess
         }
         if ($this->container['thumb'] === null) {
             $invalidProperties[] = "'thumb' can't be null";
+        }
+        if ($this->container['classes'] === null) {
+            $invalidProperties[] = "'classes' can't be null";
         }
         return $invalidProperties;
     }
@@ -350,6 +359,30 @@ class ImageInfo implements ModelInterface, ArrayAccess
     public function setByline($byline)
     {
         $this->container['byline'] = $byline;
+
+        return $this;
+    }
+
+    /**
+     * Gets classes
+     *
+     * @return string[]
+     */
+    public function getClasses()
+    {
+        return $this->container['classes'];
+    }
+
+    /**
+     * Sets classes
+     *
+     * @param string[] $classes classes
+     *
+     * @return $this
+     */
+    public function setClasses($classes)
+    {
+        $this->container['classes'] = $classes;
 
         return $this;
     }
