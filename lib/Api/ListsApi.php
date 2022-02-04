@@ -127,7 +127,7 @@ class ListsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ArticleStub[]
+     * @return object
      */
     public function frontpageGet($start = null, $limit = null, $category = null, $paper = null)
     {
@@ -147,7 +147,7 @@ class ListsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ArticleStub[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
     public function frontpageGetWithHttpInfo($start = null, $limit = null, $category = null, $paper = null)
     {
@@ -184,20 +184,20 @@ class ListsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ArticleStub[]' === '\SplFileObject') {
+                    if ('object' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ArticleStub[]', []),
+                        ObjectSerializer::deserialize($content, 'object', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+            $returnType = 'object';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -216,7 +216,7 @@ class ListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ArticleStub[]',
+                        'object',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -264,7 +264,7 @@ class ListsApi
      */
     public function frontpageGetAsyncWithHttpInfo($start = null, $limit = null, $category = null, $paper = null)
     {
-        $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+        $returnType = 'object';
         $request = $this->frontpageGetRequest($start, $limit, $category, $paper);
 
         return $this->client
@@ -359,11 +359,11 @@ class ListsApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json;charset=utf-8']
+                ['application/json;charset=utf-8', 'application/rss+xml']
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8', 'application/rss+xml'],
                 []
             );
         }
@@ -429,7 +429,7 @@ class ListsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ArticleStub[]
+     * @return object
      */
     public function latestGet($start = null, $limit = null, $paper = null)
     {
@@ -448,7 +448,7 @@ class ListsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ArticleStub[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
     public function latestGetWithHttpInfo($start = null, $limit = null, $paper = null)
     {
@@ -485,20 +485,20 @@ class ListsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ArticleStub[]' === '\SplFileObject') {
+                    if ('object' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ArticleStub[]', []),
+                        ObjectSerializer::deserialize($content, 'object', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+            $returnType = 'object';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -517,7 +517,7 @@ class ListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ArticleStub[]',
+                        'object',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -563,7 +563,7 @@ class ListsApi
      */
     public function latestGetAsyncWithHttpInfo($start = null, $limit = null, $paper = null)
     {
-        $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+        $returnType = 'object';
         $request = $this->latestGetRequest($start, $limit, $paper);
 
         return $this->client
@@ -653,11 +653,11 @@ class ListsApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json;charset=utf-8']
+                ['application/json;charset=utf-8', 'application/rss+xml']
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8', 'application/rss+xml'],
                 []
             );
         }
@@ -2625,7 +2625,7 @@ class ListsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ArticleStub[]
+     * @return object
      */
     public function tagTagGet($tag, $start = null, $limit = null, $paper = null)
     {
@@ -2645,7 +2645,7 @@ class ListsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ArticleStub[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
     public function tagTagGetWithHttpInfo($tag, $start = null, $limit = null, $paper = null)
     {
@@ -2682,20 +2682,20 @@ class ListsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ArticleStub[]' === '\SplFileObject') {
+                    if ('object' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ArticleStub[]', []),
+                        ObjectSerializer::deserialize($content, 'object', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+            $returnType = 'object';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -2714,7 +2714,7 @@ class ListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ArticleStub[]',
+                        'object',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2762,7 +2762,7 @@ class ListsApi
      */
     public function tagTagGetAsyncWithHttpInfo($tag, $start = null, $limit = null, $paper = null)
     {
-        $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+        $returnType = 'object';
         $request = $this->tagTagGetRequest($tag, $start, $limit, $paper);
 
         return $this->client
@@ -2867,11 +2867,11 @@ class ListsApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json;charset=utf-8']
+                ['application/json;charset=utf-8', 'application/rss+xml']
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8', 'application/rss+xml'],
                 []
             );
         }

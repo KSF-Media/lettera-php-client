@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## frontpageGet
 
-> \OpenAPI\Client\Model\ArticleStub[] frontpageGet($start, $limit, $category, $paper)
+> object frontpageGet($start, $limit, $category, $paper)
 
 Returns a list for a front page
 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ArticleStub[]**](../Model/ArticleStub.md)
+**object**
 
 ### Authorization
 
@@ -69,7 +69,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;charset=utf-8
+- **Accept**: application/json;charset=utf-8, application/rss+xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../../README.md#documentation-for-models)
@@ -78,7 +78,7 @@ No authorization required
 
 ## latestGet
 
-> \OpenAPI\Client\Model\ArticleStub[] latestGet($start, $limit, $paper)
+> object latestGet($start, $limit, $paper)
 
 Returns a list of latest articles
 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ArticleStub[]**](../Model/ArticleStub.md)
+**object**
 
 ### Authorization
 
@@ -127,7 +127,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;charset=utf-8
+- **Accept**: application/json;charset=utf-8, application/rss+xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../../README.md#documentation-for-models)
@@ -503,7 +503,7 @@ No authorization required
 
 ## tagTagGet
 
-> \OpenAPI\Client\Model\ArticleStub[] tagTagGet($tag, $start, $limit, $paper)
+> object tagTagGet($tag, $start, $limit, $paper)
 
 Returns a list of latest articles by tag
 
@@ -545,7 +545,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ArticleStub[]**](../Model/ArticleStub.md)
+**object**
 
 ### Authorization
 
@@ -554,7 +554,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;charset=utf-8
+- **Accept**: application/json;charset=utf-8, application/rss+xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../../README.md#documentation-for-models)
