@@ -98,4 +98,11 @@ class AuthorTest extends TestCase
     public function testPropertyEmail()
     {
     }
+
+    /**
+     * Test attribute "info"
+     */
+    public function testPropertyInfo()
+    {
+    }
 }
