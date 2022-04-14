@@ -59,6 +59,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'url' => 'string',
         'thumb' => 'string',
+        'thumb_size' => 'int',
         'caption' => 'string',
         'alignment' => '\OpenAPI\Client\Model\Alignment',
         'byline' => 'string',
@@ -73,6 +74,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'url' => null,
         'thumb' => null,
+        'thumb_size' => null,
         'caption' => null,
         'alignment' => null,
         'byline' => null,
@@ -108,6 +110,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'url' => 'url',
         'thumb' => 'thumb',
+        'thumb_size' => 'thumbSize',
         'caption' => 'caption',
         'alignment' => 'alignment',
         'byline' => 'byline',
@@ -122,6 +125,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     protected static $setters = [
         'url' => 'setUrl',
         'thumb' => 'setThumb',
+        'thumb_size' => 'setThumbSize',
         'caption' => 'setCaption',
         'alignment' => 'setAlignment',
         'byline' => 'setByline',
@@ -136,6 +140,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     protected static $getters = [
         'url' => 'getUrl',
         'thumb' => 'getThumb',
+        'thumb_size' => 'getThumbSize',
         'caption' => 'getCaption',
         'alignment' => 'getAlignment',
         'byline' => 'getByline',
@@ -204,6 +209,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     {
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
         $this->container['thumb'] = isset($data['thumb']) ? $data['thumb'] : null;
+        $this->container['thumb_size'] = isset($data['thumb_size']) ? $data['thumb_size'] : null;
         $this->container['caption'] = isset($data['caption']) ? $data['caption'] : null;
         $this->container['alignment'] = isset($data['alignment']) ? $data['alignment'] : null;
         $this->container['byline'] = isset($data['byline']) ? $data['byline'] : null;
@@ -225,6 +231,14 @@ class ImageInfo implements ModelInterface, ArrayAccess
         if ($this->container['thumb'] === null) {
             $invalidProperties[] = "'thumb' can't be null";
         }
+        if (!is_null($this->container['thumb_size']) && ($this->container['thumb_size'] > 9223372036854775807)) {
+            $invalidProperties[] = "invalid value for 'thumb_size', must be smaller than or equal to 9223372036854775807.";
+        }
+
+        if (!is_null($this->container['thumb_size']) && ($this->container['thumb_size'] < -9223372036854775808)) {
+            $invalidProperties[] = "invalid value for 'thumb_size', must be bigger than or equal to -9223372036854775808.";
+        }
+
         if ($this->container['classes'] === null) {
             $invalidProperties[] = "'classes' can't be null";
         }
@@ -287,6 +301,38 @@ class ImageInfo implements ModelInterface, ArrayAccess
     public function setThumb($thumb)
     {
         $this->container['thumb'] = $thumb;
+
+        return $this;
+    }
+
+    /**
+     * Gets thumb_size
+     *
+     * @return int|null
+     */
+    public function getThumbSize()
+    {
+        return $this->container['thumb_size'];
+    }
+
+    /**
+     * Sets thumb_size
+     *
+     * @param int|null $thumb_size thumb_size
+     *
+     * @return $this
+     */
+    public function setThumbSize($thumb_size)
+    {
+
+        if (!is_null($thumb_size) && ($thumb_size > 9223372036854775807)) {
+            throw new \InvalidArgumentException('invalid value for $thumb_size when calling ImageInfo., must be smaller than or equal to 9223372036854775807.');
+        }
+        if (!is_null($thumb_size) && ($thumb_size < -9223372036854775808)) {
+            throw new \InvalidArgumentException('invalid value for $thumb_size when calling ImageInfo., must be bigger than or equal to -9223372036854775808.');
+        }
+
+        $this->container['thumb_size'] = $thumb_size;
 
         return $this;
     }

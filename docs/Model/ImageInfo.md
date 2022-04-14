@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **url** | **string** |  | 
 **thumb** | **string** |  | 
+**thumb_size** | **int** |  | [optional] 
 **caption** | **string** |  | [optional] 
 **alignment** | [**\OpenAPI\Client\Model\Alignment**](Alignment.md) |  | [optional] 
 **byline** | **string** |  | [optional] 
