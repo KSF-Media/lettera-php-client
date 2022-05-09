@@ -725,7 +725,7 @@ class ListsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ArticleStub[]
+     * @return object
      */
     public function mostreadGet($start = null, $limit = null, $category = null, $paper = null, $only_subscribers = null)
     {
@@ -746,7 +746,7 @@ class ListsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ArticleStub[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
     public function mostreadGetWithHttpInfo($start = null, $limit = null, $category = null, $paper = null, $only_subscribers = null)
     {
@@ -783,20 +783,20 @@ class ListsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ArticleStub[]' === '\SplFileObject') {
+                    if ('object' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ArticleStub[]', []),
+                        ObjectSerializer::deserialize($content, 'object', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+            $returnType = 'object';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -815,7 +815,7 @@ class ListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ArticleStub[]',
+                        'object',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -865,7 +865,7 @@ class ListsApi
      */
     public function mostreadGetAsyncWithHttpInfo($start = null, $limit = null, $category = null, $paper = null, $only_subscribers = null)
     {
-        $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
+        $returnType = 'object';
         $request = $this->mostreadGetRequest($start, $limit, $category, $paper, $only_subscribers);
 
         return $this->client

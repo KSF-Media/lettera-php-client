@@ -136,7 +136,7 @@ No authorization required
 
 ## mostreadGet
 
-> \OpenAPI\Client\Model\ArticleStub[] mostreadGet($start, $limit, $category, $paper, $only_subscribers)
+> object mostreadGet($start, $limit, $category, $paper, $only_subscribers)
 
 Returns a list of most read articles
 
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ArticleStub[]**](../Model/ArticleStub.md)
+**object**
 
 ### Authorization
 
