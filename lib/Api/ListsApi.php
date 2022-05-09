@@ -426,14 +426,15 @@ class ListsApi
      * @param  int $start start (optional)
      * @param  int $limit limit (optional)
      * @param  string $paper paper (optional)
+     * @param  string $category category (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function latestGet($start = null, $limit = null, $paper = null)
+    public function latestGet($start = null, $limit = null, $paper = null, $category = null)
     {
-        list($response) = $this->latestGetWithHttpInfo($start, $limit, $paper);
+        list($response) = $this->latestGetWithHttpInfo($start, $limit, $paper, $category);
         return $response;
     }
 
@@ -445,14 +446,15 @@ class ListsApi
      * @param  int $start (optional)
      * @param  int $limit (optional)
      * @param  string $paper (optional)
+     * @param  string $category (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function latestGetWithHttpInfo($start = null, $limit = null, $paper = null)
+    public function latestGetWithHttpInfo($start = null, $limit = null, $paper = null, $category = null)
     {
-        $request = $this->latestGetRequest($start, $limit, $paper);
+        $request = $this->latestGetRequest($start, $limit, $paper, $category);
 
         try {
             $options = $this->createHttpClientOption();
@@ -535,13 +537,14 @@ class ListsApi
      * @param  int $start (optional)
      * @param  int $limit (optional)
      * @param  string $paper (optional)
+     * @param  string $category (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestGetAsync($start = null, $limit = null, $paper = null)
+    public function latestGetAsync($start = null, $limit = null, $paper = null, $category = null)
     {
-        return $this->latestGetAsyncWithHttpInfo($start, $limit, $paper)
+        return $this->latestGetAsyncWithHttpInfo($start, $limit, $paper, $category)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -557,14 +560,15 @@ class ListsApi
      * @param  int $start (optional)
      * @param  int $limit (optional)
      * @param  string $paper (optional)
+     * @param  string $category (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestGetAsyncWithHttpInfo($start = null, $limit = null, $paper = null)
+    public function latestGetAsyncWithHttpInfo($start = null, $limit = null, $paper = null, $category = null)
     {
         $returnType = 'object';
-        $request = $this->latestGetRequest($start, $limit, $paper);
+        $request = $this->latestGetRequest($start, $limit, $paper, $category);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -606,11 +610,12 @@ class ListsApi
      * @param  int $start (optional)
      * @param  int $limit (optional)
      * @param  string $paper (optional)
+     * @param  string $category (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function latestGetRequest($start = null, $limit = null, $paper = null)
+    protected function latestGetRequest($start = null, $limit = null, $paper = null, $category = null)
     {
         if ($start !== null && $start > 9223372036854775807) {
             throw new \InvalidArgumentException('invalid value for "$start" when calling ListsApi.latestGet, must be smaller than or equal to 9223372036854775807.');
@@ -645,6 +650,10 @@ class ListsApi
         // query params
         if ($paper !== null) {
             $queryParams['paper'] = ObjectSerializer::toQueryValue($paper);
+        }
+        // query params
+        if ($category !== null) {
+            $queryParams['category'] = ObjectSerializer::toQueryValue($category);
         }
 
 

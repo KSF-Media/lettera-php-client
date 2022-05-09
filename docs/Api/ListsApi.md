@@ -78,7 +78,7 @@ No authorization required
 
 ## latestGet
 
-> object latestGet($start, $limit, $paper)
+> object latestGet($start, $limit, $paper, $category)
 
 Returns a list of latest articles
 
@@ -97,9 +97,10 @@ $apiInstance = new OpenAPI\Client\Api\ListsApi(
 $start = 56; // int | 
 $limit = 56; // int | 
 $paper = 'paper_example'; // string | 
+$category = 'category_example'; // string | 
 
 try {
-    $result = $apiInstance->latestGet($start, $limit, $paper);
+    $result = $apiInstance->latestGet($start, $limit, $paper, $category);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ListsApi->latestGet: ', $e->getMessage(), PHP_EOL;
@@ -115,6 +116,7 @@ Name | Type | Description  | Notes
  **start** | **int**|  | [optional]
  **limit** | **int**|  | [optional]
  **paper** | **string**|  | [optional]
+ **category** | **string**|  | [optional]
 
 ### Return type
 
