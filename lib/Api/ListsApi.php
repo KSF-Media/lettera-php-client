@@ -974,11 +974,11 @@ class ListsApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json;charset=utf-8']
+                ['application/json;charset=utf-8', 'application/rss+xml']
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json;charset=utf-8'],
+                ['application/json;charset=utf-8', 'application/rss+xml'],
                 []
             );
         }
