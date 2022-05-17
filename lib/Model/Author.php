@@ -59,8 +59,7 @@ class Author implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'byline' => 'string',
         'image' => 'string',
-        'email' => 'string',
-        'info' => 'string'
+        'email' => 'string'
     ];
 
     /**
@@ -71,8 +70,7 @@ class Author implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'byline' => null,
         'image' => null,
-        'email' => null,
-        'info' => null
+        'email' => null
     ];
 
     /**
@@ -104,8 +102,7 @@ class Author implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'byline' => 'byline',
         'image' => 'image',
-        'email' => 'email',
-        'info' => 'info'
+        'email' => 'email'
     ];
 
     /**
@@ -116,8 +113,7 @@ class Author implements ModelInterface, ArrayAccess
     protected static $setters = [
         'byline' => 'setByline',
         'image' => 'setImage',
-        'email' => 'setEmail',
-        'info' => 'setInfo'
+        'email' => 'setEmail'
     ];
 
     /**
@@ -128,8 +124,7 @@ class Author implements ModelInterface, ArrayAccess
     protected static $getters = [
         'byline' => 'getByline',
         'image' => 'getImage',
-        'email' => 'getEmail',
-        'info' => 'getInfo'
+        'email' => 'getEmail'
     ];
 
     /**
@@ -195,7 +190,6 @@ class Author implements ModelInterface, ArrayAccess
         $this->container['byline'] = isset($data['byline']) ? $data['byline'] : null;
         $this->container['image'] = isset($data['image']) ? $data['image'] : null;
         $this->container['email'] = isset($data['email']) ? $data['email'] : null;
-        $this->container['info'] = isset($data['info']) ? $data['info'] : null;
     }
 
     /**
@@ -293,30 +287,6 @@ class Author implements ModelInterface, ArrayAccess
     public function setEmail($email)
     {
         $this->container['email'] = $email;
-
-        return $this;
-    }
-
-    /**
-     * Gets info
-     *
-     * @return string|null
-     */
-    public function getInfo()
-    {
-        return $this->container['info'];
-    }
-
-    /**
-     * Sets info
-     *
-     * @param string|null $info info
-     *
-     * @return $this
-     */
-    public function setInfo($info)
-    {
-        $this->container['info'] = $info;
 
         return $this;
     }
