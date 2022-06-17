@@ -445,7 +445,7 @@ No authorization required
 
 ## searchGet
 
-> \OpenAPI\Client\Model\ArticleStub[] searchGet($start, $limit, $paper, $content_query)
+> \OpenAPI\Client\Model\ArticleStub[] searchGet($content_query, $start, $limit, $paper)
 
 Returns a list of search results
 
@@ -461,13 +461,13 @@ $apiInstance = new OpenAPI\Client\Api\ListsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$content_query = 'content_query_example'; // string | 
 $start = 56; // int | 
 $limit = 56; // int | 
 $paper = 'paper_example'; // string | 
-$content_query = 'content_query_example'; // string | 
 
 try {
-    $result = $apiInstance->searchGet($start, $limit, $paper, $content_query);
+    $result = $apiInstance->searchGet($content_query, $start, $limit, $paper);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ListsApi->searchGet: ', $e->getMessage(), PHP_EOL;
@@ -480,10 +480,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **content_query** | **string**|  |
  **start** | **int**|  | [optional]
  **limit** | **int**|  | [optional]
  **paper** | **string**|  | [optional]
- **content_query** | **string**|  | [optional]
 
 ### Return type
 

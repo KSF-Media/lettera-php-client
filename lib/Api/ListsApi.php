@@ -2324,18 +2324,18 @@ class ListsApi
      *
      * Returns a list of search results
      *
+     * @param  string $content_query content_query (required)
      * @param  int $start start (optional)
      * @param  int $limit limit (optional)
      * @param  string $paper paper (optional)
-     * @param  string $content_query content_query (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ArticleStub[]
      */
-    public function searchGet($start = null, $limit = null, $paper = null, $content_query = null)
+    public function searchGet($content_query, $start = null, $limit = null, $paper = null)
     {
-        list($response) = $this->searchGetWithHttpInfo($start, $limit, $paper, $content_query);
+        list($response) = $this->searchGetWithHttpInfo($content_query, $start, $limit, $paper);
         return $response;
     }
 
@@ -2344,18 +2344,18 @@ class ListsApi
      *
      * Returns a list of search results
      *
+     * @param  string $content_query (required)
      * @param  int $start (optional)
      * @param  int $limit (optional)
      * @param  string $paper (optional)
-     * @param  string $content_query (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ArticleStub[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchGetWithHttpInfo($start = null, $limit = null, $paper = null, $content_query = null)
+    public function searchGetWithHttpInfo($content_query, $start = null, $limit = null, $paper = null)
     {
-        $request = $this->searchGetRequest($start, $limit, $paper, $content_query);
+        $request = $this->searchGetRequest($content_query, $start, $limit, $paper);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2435,17 +2435,17 @@ class ListsApi
      *
      * Returns a list of search results
      *
+     * @param  string $content_query (required)
      * @param  int $start (optional)
      * @param  int $limit (optional)
      * @param  string $paper (optional)
-     * @param  string $content_query (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchGetAsync($start = null, $limit = null, $paper = null, $content_query = null)
+    public function searchGetAsync($content_query, $start = null, $limit = null, $paper = null)
     {
-        return $this->searchGetAsyncWithHttpInfo($start, $limit, $paper, $content_query)
+        return $this->searchGetAsyncWithHttpInfo($content_query, $start, $limit, $paper)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2458,18 +2458,18 @@ class ListsApi
      *
      * Returns a list of search results
      *
+     * @param  string $content_query (required)
      * @param  int $start (optional)
      * @param  int $limit (optional)
      * @param  string $paper (optional)
-     * @param  string $content_query (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchGetAsyncWithHttpInfo($start = null, $limit = null, $paper = null, $content_query = null)
+    public function searchGetAsyncWithHttpInfo($content_query, $start = null, $limit = null, $paper = null)
     {
         $returnType = '\OpenAPI\Client\Model\ArticleStub[]';
-        $request = $this->searchGetRequest($start, $limit, $paper, $content_query);
+        $request = $this->searchGetRequest($content_query, $start, $limit, $paper);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2508,16 +2508,22 @@ class ListsApi
     /**
      * Create request for operation 'searchGet'
      *
+     * @param  string $content_query (required)
      * @param  int $start (optional)
      * @param  int $limit (optional)
      * @param  string $paper (optional)
-     * @param  string $content_query (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function searchGetRequest($start = null, $limit = null, $paper = null, $content_query = null)
+    protected function searchGetRequest($content_query, $start = null, $limit = null, $paper = null)
     {
+        // verify the required parameter 'content_query' is set
+        if ($content_query === null || (is_array($content_query) && count($content_query) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $content_query when calling searchGet'
+            );
+        }
         if ($start !== null && $start > 9223372036854775807) {
             throw new \InvalidArgumentException('invalid value for "$start" when calling ListsApi.searchGet, must be smaller than or equal to 9223372036854775807.');
         }
