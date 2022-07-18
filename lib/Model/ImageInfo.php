@@ -59,6 +59,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'url' => 'string',
         'thumb' => 'string',
+        'tiny_thumb' => 'string',
         'thumb_size' => 'int',
         'caption' => 'string',
         'alignment' => '\OpenAPI\Client\Model\Alignment',
@@ -74,6 +75,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'url' => null,
         'thumb' => null,
+        'tiny_thumb' => null,
         'thumb_size' => null,
         'caption' => null,
         'alignment' => null,
@@ -110,6 +112,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'url' => 'url',
         'thumb' => 'thumb',
+        'tiny_thumb' => 'tinyThumb',
         'thumb_size' => 'thumbSize',
         'caption' => 'caption',
         'alignment' => 'alignment',
@@ -125,6 +128,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     protected static $setters = [
         'url' => 'setUrl',
         'thumb' => 'setThumb',
+        'tiny_thumb' => 'setTinyThumb',
         'thumb_size' => 'setThumbSize',
         'caption' => 'setCaption',
         'alignment' => 'setAlignment',
@@ -140,6 +144,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     protected static $getters = [
         'url' => 'getUrl',
         'thumb' => 'getThumb',
+        'tiny_thumb' => 'getTinyThumb',
         'thumb_size' => 'getThumbSize',
         'caption' => 'getCaption',
         'alignment' => 'getAlignment',
@@ -209,6 +214,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
     {
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
         $this->container['thumb'] = isset($data['thumb']) ? $data['thumb'] : null;
+        $this->container['tiny_thumb'] = isset($data['tiny_thumb']) ? $data['tiny_thumb'] : null;
         $this->container['thumb_size'] = isset($data['thumb_size']) ? $data['thumb_size'] : null;
         $this->container['caption'] = isset($data['caption']) ? $data['caption'] : null;
         $this->container['alignment'] = isset($data['alignment']) ? $data['alignment'] : null;
@@ -230,6 +236,9 @@ class ImageInfo implements ModelInterface, ArrayAccess
         }
         if ($this->container['thumb'] === null) {
             $invalidProperties[] = "'thumb' can't be null";
+        }
+        if ($this->container['tiny_thumb'] === null) {
+            $invalidProperties[] = "'tiny_thumb' can't be null";
         }
         if (!is_null($this->container['thumb_size']) && ($this->container['thumb_size'] > 9223372036854775807)) {
             $invalidProperties[] = "invalid value for 'thumb_size', must be smaller than or equal to 9223372036854775807.";
@@ -301,6 +310,30 @@ class ImageInfo implements ModelInterface, ArrayAccess
     public function setThumb($thumb)
     {
         $this->container['thumb'] = $thumb;
+
+        return $this;
+    }
+
+    /**
+     * Gets tiny_thumb
+     *
+     * @return string
+     */
+    public function getTinyThumb()
+    {
+        return $this->container['tiny_thumb'];
+    }
+
+    /**
+     * Sets tiny_thumb
+     *
+     * @param string $tiny_thumb tiny_thumb
+     *
+     * @return $this
+     */
+    public function setTinyThumb($tiny_thumb)
+    {
+        $this->container['tiny_thumb'] = $tiny_thumb;
 
         return $this;
     }

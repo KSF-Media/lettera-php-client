@@ -93,6 +93,13 @@ class ImageInfoTest extends TestCase
     }
 
     /**
+     * Test attribute "tiny_thumb"
+     */
+    public function testPropertyTinyThumb()
+    {
+    }
+
+    /**
      * Test attribute "thumb_size"
      */
     public function testPropertyThumbSize()
