@@ -107,6 +107,13 @@ class ImageInfoTest extends TestCase
     }
 
     /**
+     * Test attribute "aoi_cropped"
+     */
+    public function testPropertyAoiCropped()
+    {
+    }
+
+    /**
      * Test attribute "caption"
      */
     public function testPropertyCaption()

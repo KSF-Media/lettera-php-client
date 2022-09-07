@@ -61,6 +61,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
         'thumb' => 'string',
         'tiny_thumb' => 'string',
         'thumb_size' => 'int',
+        'aoi_cropped' => 'string',
         'caption' => 'string',
         'alignment' => '\OpenAPI\Client\Model\Alignment',
         'byline' => 'string',
@@ -77,6 +78,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
         'thumb' => null,
         'tiny_thumb' => null,
         'thumb_size' => null,
+        'aoi_cropped' => null,
         'caption' => null,
         'alignment' => null,
         'byline' => null,
@@ -114,6 +116,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
         'thumb' => 'thumb',
         'tiny_thumb' => 'tinyThumb',
         'thumb_size' => 'thumbSize',
+        'aoi_cropped' => 'aoiCropped',
         'caption' => 'caption',
         'alignment' => 'alignment',
         'byline' => 'byline',
@@ -130,6 +133,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
         'thumb' => 'setThumb',
         'tiny_thumb' => 'setTinyThumb',
         'thumb_size' => 'setThumbSize',
+        'aoi_cropped' => 'setAoiCropped',
         'caption' => 'setCaption',
         'alignment' => 'setAlignment',
         'byline' => 'setByline',
@@ -146,6 +150,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
         'thumb' => 'getThumb',
         'tiny_thumb' => 'getTinyThumb',
         'thumb_size' => 'getThumbSize',
+        'aoi_cropped' => 'getAoiCropped',
         'caption' => 'getCaption',
         'alignment' => 'getAlignment',
         'byline' => 'getByline',
@@ -216,6 +221,7 @@ class ImageInfo implements ModelInterface, ArrayAccess
         $this->container['thumb'] = isset($data['thumb']) ? $data['thumb'] : null;
         $this->container['tiny_thumb'] = isset($data['tiny_thumb']) ? $data['tiny_thumb'] : null;
         $this->container['thumb_size'] = isset($data['thumb_size']) ? $data['thumb_size'] : null;
+        $this->container['aoi_cropped'] = isset($data['aoi_cropped']) ? $data['aoi_cropped'] : null;
         $this->container['caption'] = isset($data['caption']) ? $data['caption'] : null;
         $this->container['alignment'] = isset($data['alignment']) ? $data['alignment'] : null;
         $this->container['byline'] = isset($data['byline']) ? $data['byline'] : null;
@@ -366,6 +372,30 @@ class ImageInfo implements ModelInterface, ArrayAccess
         }
 
         $this->container['thumb_size'] = $thumb_size;
+
+        return $this;
+    }
+
+    /**
+     * Gets aoi_cropped
+     *
+     * @return string|null
+     */
+    public function getAoiCropped()
+    {
+        return $this->container['aoi_cropped'];
+    }
+
+    /**
+     * Sets aoi_cropped
+     *
+     * @param string|null $aoi_cropped aoi_cropped
+     *
+     * @return $this
+     */
+    public function setAoiCropped($aoi_cropped)
+    {
+        $this->container['aoi_cropped'] = $aoi_cropped;
 
         return $this;
     }

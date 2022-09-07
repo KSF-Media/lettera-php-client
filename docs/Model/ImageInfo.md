@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **thumb** | **string** |  | 
 **tiny_thumb** | **string** |  | 
 **thumb_size** | **int** |  | [optional] 
+**aoi_cropped** | **string** |  | [optional] 
 **caption** | **string** |  | [optional] 
 **alignment** | [**\OpenAPI\Client\Model\Alignment**](Alignment.md) |  | [optional] 
 **byline** | **string** |  | [optional] 
