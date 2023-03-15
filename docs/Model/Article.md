@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **analytics_section** | **string** |  | [optional] 
 **article_priority** | **int** |  | [optional] 
 **article_time_on_site** | **int** |  | [optional] 
+**remove_ads** | **bool** |  | 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

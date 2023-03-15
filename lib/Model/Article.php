@@ -78,7 +78,8 @@ class Article implements ModelInterface, ArrayAccess
         'analytics_category' => 'string',
         'analytics_section' => 'string',
         'article_priority' => 'int',
-        'article_time_on_site' => 'int'
+        'article_time_on_site' => 'int',
+        'remove_ads' => 'bool'
     ];
 
     /**
@@ -108,7 +109,8 @@ class Article implements ModelInterface, ArrayAccess
         'analytics_category' => null,
         'analytics_section' => null,
         'article_priority' => null,
-        'article_time_on_site' => null
+        'article_time_on_site' => null,
+        'remove_ads' => null
     ];
 
     /**
@@ -159,7 +161,8 @@ class Article implements ModelInterface, ArrayAccess
         'analytics_category' => 'analyticsCategory',
         'analytics_section' => 'analyticsSection',
         'article_priority' => 'articlePriority',
-        'article_time_on_site' => 'articleTimeOnSite'
+        'article_time_on_site' => 'articleTimeOnSite',
+        'remove_ads' => 'removeAds'
     ];
 
     /**
@@ -189,7 +192,8 @@ class Article implements ModelInterface, ArrayAccess
         'analytics_category' => 'setAnalyticsCategory',
         'analytics_section' => 'setAnalyticsSection',
         'article_priority' => 'setArticlePriority',
-        'article_time_on_site' => 'setArticleTimeOnSite'
+        'article_time_on_site' => 'setArticleTimeOnSite',
+        'remove_ads' => 'setRemoveAds'
     ];
 
     /**
@@ -219,7 +223,8 @@ class Article implements ModelInterface, ArrayAccess
         'analytics_category' => 'getAnalyticsCategory',
         'analytics_section' => 'getAnalyticsSection',
         'article_priority' => 'getArticlePriority',
-        'article_time_on_site' => 'getArticleTimeOnSite'
+        'article_time_on_site' => 'getArticleTimeOnSite',
+        'remove_ads' => 'getRemoveAds'
     ];
 
     /**
@@ -304,6 +309,7 @@ class Article implements ModelInterface, ArrayAccess
         $this->container['analytics_section'] = isset($data['analytics_section']) ? $data['analytics_section'] : null;
         $this->container['article_priority'] = isset($data['article_priority']) ? $data['article_priority'] : null;
         $this->container['article_time_on_site'] = isset($data['article_time_on_site']) ? $data['article_time_on_site'] : null;
+        $this->container['remove_ads'] = isset($data['remove_ads']) ? $data['remove_ads'] : null;
     }
 
     /**
@@ -361,6 +367,9 @@ class Article implements ModelInterface, ArrayAccess
             $invalidProperties[] = "invalid value for 'article_time_on_site', must be bigger than or equal to -9223372036854775808.";
         }
 
+        if ($this->container['remove_ads'] === null) {
+            $invalidProperties[] = "'remove_ads' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -916,6 +925,30 @@ class Article implements ModelInterface, ArrayAccess
         }
 
         $this->container['article_time_on_site'] = $article_time_on_site;
+
+        return $this;
+    }
+
+    /**
+     * Gets remove_ads
+     *
+     * @return bool
+     */
+    public function getRemoveAds()
+    {
+        return $this->container['remove_ads'];
+    }
+
+    /**
+     * Sets remove_ads
+     *
+     * @param bool $remove_ads remove_ads
+     *
+     * @return $this
+     */
+    public function setRemoveAds($remove_ads)
+    {
+        $this->container['remove_ads'] = $remove_ads;
 
         return $this;
     }

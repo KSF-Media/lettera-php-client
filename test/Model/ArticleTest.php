@@ -231,4 +231,11 @@ class ArticleTest extends TestCase
     public function testPropertyArticleTimeOnSite()
     {
     }
+
+    /**
+     * Test attribute "remove_ads"
+     */
+    public function testPropertyRemoveAds()
+    {
+    }
 }
