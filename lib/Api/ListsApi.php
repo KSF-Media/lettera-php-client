@@ -425,6 +425,8 @@ class ListsApi
      *
      * @param  int $start start (optional)
      * @param  int $limit limit (optional)
+     * @param  string $from from (optional)
+     * @param  string $to to (optional)
      * @param  string $paper paper (optional)
      * @param  string $category category (optional)
      *
@@ -432,9 +434,9 @@ class ListsApi
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function latestGet($start = null, $limit = null, $paper = null, $category = null)
+    public function latestGet($start = null, $limit = null, $from = null, $to = null, $paper = null, $category = null)
     {
-        list($response) = $this->latestGetWithHttpInfo($start, $limit, $paper, $category);
+        list($response) = $this->latestGetWithHttpInfo($start, $limit, $from, $to, $paper, $category);
         return $response;
     }
 
@@ -445,6 +447,8 @@ class ListsApi
      *
      * @param  int $start (optional)
      * @param  int $limit (optional)
+     * @param  string $from (optional)
+     * @param  string $to (optional)
      * @param  string $paper (optional)
      * @param  string $category (optional)
      *
@@ -452,9 +456,9 @@ class ListsApi
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function latestGetWithHttpInfo($start = null, $limit = null, $paper = null, $category = null)
+    public function latestGetWithHttpInfo($start = null, $limit = null, $from = null, $to = null, $paper = null, $category = null)
     {
-        $request = $this->latestGetRequest($start, $limit, $paper, $category);
+        $request = $this->latestGetRequest($start, $limit, $from, $to, $paper, $category);
 
         try {
             $options = $this->createHttpClientOption();
@@ -536,15 +540,17 @@ class ListsApi
      *
      * @param  int $start (optional)
      * @param  int $limit (optional)
+     * @param  string $from (optional)
+     * @param  string $to (optional)
      * @param  string $paper (optional)
      * @param  string $category (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestGetAsync($start = null, $limit = null, $paper = null, $category = null)
+    public function latestGetAsync($start = null, $limit = null, $from = null, $to = null, $paper = null, $category = null)
     {
-        return $this->latestGetAsyncWithHttpInfo($start, $limit, $paper, $category)
+        return $this->latestGetAsyncWithHttpInfo($start, $limit, $from, $to, $paper, $category)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -559,16 +565,18 @@ class ListsApi
      *
      * @param  int $start (optional)
      * @param  int $limit (optional)
+     * @param  string $from (optional)
+     * @param  string $to (optional)
      * @param  string $paper (optional)
      * @param  string $category (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestGetAsyncWithHttpInfo($start = null, $limit = null, $paper = null, $category = null)
+    public function latestGetAsyncWithHttpInfo($start = null, $limit = null, $from = null, $to = null, $paper = null, $category = null)
     {
         $returnType = 'object';
-        $request = $this->latestGetRequest($start, $limit, $paper, $category);
+        $request = $this->latestGetRequest($start, $limit, $from, $to, $paper, $category);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -609,13 +617,15 @@ class ListsApi
      *
      * @param  int $start (optional)
      * @param  int $limit (optional)
+     * @param  string $from (optional)
+     * @param  string $to (optional)
      * @param  string $paper (optional)
      * @param  string $category (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function latestGetRequest($start = null, $limit = null, $paper = null, $category = null)
+    protected function latestGetRequest($start = null, $limit = null, $from = null, $to = null, $paper = null, $category = null)
     {
         if ($start !== null && $start > 9223372036854775807) {
             throw new \InvalidArgumentException('invalid value for "$start" when calling ListsApi.latestGet, must be smaller than or equal to 9223372036854775807.');
@@ -646,6 +656,14 @@ class ListsApi
         // query params
         if ($limit !== null) {
             $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+        }
+        // query params
+        if ($from !== null) {
+            $queryParams['from'] = ObjectSerializer::toQueryValue($from);
+        }
+        // query params
+        if ($to !== null) {
+            $queryParams['to'] = ObjectSerializer::toQueryValue($to);
         }
         // query params
         if ($paper !== null) {
