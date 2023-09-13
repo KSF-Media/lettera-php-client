@@ -95,8 +95,6 @@ Class | Method | HTTP request | Description
 *ListsApi* | [**mostreadGet**](docs/Api/ListsApi.md#mostreadget) | **GET** /mostread | Returns a list of most read articles
 *ListsApi* | [**presetPresetCategoryGet**](docs/Api/ListsApi.md#presetpresetcategoryget) | **GET** /preset/{preset}/{category} | Load a preset model
 *ListsApi* | [**presetPresetCategoryPost**](docs/Api/ListsApi.md#presetpresetcategorypost) | **POST** /preset/{preset}/{category} | Update a preset model
-*ListsApi* | [**scoredPost**](docs/Api/ListsApi.md#scoredpost) | **POST** /scored | List recent articles sorted by given scoring weights
-*ListsApi* | [**scoredPresetGet**](docs/Api/ListsApi.md#scoredpresetget) | **GET** /scored/{preset} | List recent articles sorted by preset scoring
 *ListsApi* | [**searchGet**](docs/Api/ListsApi.md#searchget) | **GET** /search | Returns a list of search results
 *ListsApi* | [**tagTagGet**](docs/Api/ListsApi.md#tagtagget) | **GET** /tag/{tag} | Returns a list of latest articles by tag
 

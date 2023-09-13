@@ -123,26 +123,6 @@ class ListsApiTest extends TestCase
     }
 
     /**
-     * Test case for scoredPost
-     *
-     * List recent articles sorted by given scoring weights.
-     *
-     */
-    public function testScoredPost()
-    {
-    }
-
-    /**
-     * Test case for scoredPresetGet
-     *
-     * List recent articles sorted by preset scoring.
-     *
-     */
-    public function testScoredPresetGet()
-    {
-    }
-
-    /**
      * Test case for searchGet
      *
      * Returns a list of search results.
